@@ -50,6 +50,6 @@ public class Languages {
         lang.put("id", id);
         lang.put("en", en);
 
-        return lang.get(lang);
+        return lang.get(this.lang);
     }
 }

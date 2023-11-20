@@ -21,6 +21,7 @@ public class ChestMenu {
     }
 
     public void mainMenu(Player player, String crateName){
+        LuckyCrates.crates.reload();
         FakeInventory inv = new FakeInventory(InventoryType.DOUBLE_CHEST,TextFormat.BOLD + crateName);
         if(!LuckyCrates.crates.exists(crateName)){
             player.sendMessage(LuckyCrates.prefix + lang.get("crate-notfound"));
@@ -49,6 +50,10 @@ public class ChestMenu {
                 for (Map<String, Object> enchant : enchantList){
                     String enchantName = (String) enchant.get("name");
                     int enchantLevel = (int) enchant.get("level");
+                    if(Enchantment.getEnchantment(enchantName) == null){
+                        player.sendMessage("§cError Enchantment not found : " + enchantName);
+                        return;
+                    }
                     item.addEnchantment(Enchantment.getEnchantment(enchantName).setLevel(enchantLevel));
                 }
             }

@@ -23,14 +23,11 @@ public class Keys{
     public boolean isKeys(Item item) {
         int id = item.getId();
         int meta = item.getDamage();
-        String name = item.hasCustomName() ? item.getCustomName() : null;
-        String lore = (item.getLore().length > 0) ? item.getLore()[0] : null;
         CompoundTag nameTag = item.hasCompoundTag() ? item.getNamedTag() : null;
         
         return id == LuckyCrates.cfg.getInt("keys.id", 131)
                 && meta == LuckyCrates.cfg.getInt("keys.meta", 0)
-                && name != null && lore != null && nameTag != null
-                && item.hasEnchantment(Enchantment.ID_BINDING_CURSE)
+                && nameTag != null
                 && nameTag.contains("isKeys");
     }
 
@@ -40,13 +37,15 @@ public class Keys{
 
     public boolean giveKey(Player player, String crateName, int amount){
         if (crateExists(crateName)){
-            Item item = new Item(getId(), getMeta(), amount);
-            item.setCustomName(getName().replace("{crate}", crateName));
-            item.setLore(getLore().replace("{crate}", crateName));
-            item.setCount(amount);
-            item.setNamedTag(new CompoundTag()
-                    .putBoolean("isKeys", true)
-                    .putString("crateName", crateName));
+
+            String customName = getName().replace("{crate}", crateName);
+            String lore = getLore().replace("{crate}", crateName);
+            Item item = new Item(getId(), getMeta(), amount)
+                    .setCustomName(customName)
+                    .setLore(lore)
+                    .setNamedTag(new CompoundTag()
+                        .putBoolean("isKeys", true)
+                        .putString("crateName", crateName));
             item.addEnchantment(Enchantment.getEnchantment(Enchantment.ID_BINDING_CURSE));
             if(isKeys(item)){
                 player.getInventory().addItem(item);

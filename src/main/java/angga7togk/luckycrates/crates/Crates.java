@@ -14,8 +14,7 @@ public class Crates extends Keys{
 
     public boolean isCrates(Block block){
         Location location = block.getLocation();
-        String loc = location.getX() + ":" + location.getY() + ":" + location.getZ() + ":" + location.getLevelName();
-        return LuckyCrates.pos.exists(loc);
+        return LuckyCrates.pos.exists(getLocationString(location));
     }
 
     public void previewCrates(Player player, Block block){
@@ -30,8 +29,7 @@ public class Crates extends Keys{
     public void breakCrates(Block block){
         if(isCrates(block)){
             Location location = block.getLocation();
-            String loc = location.getX() + ":" + location.getY() + ":" + location.getZ() + ":" + location.getLevelName();
-            LuckyCrates.pos.remove(loc);
+            LuckyCrates.pos.remove(getLocationString(location));
             LuckyCrates.pos.save();
             LuckyCrates.pos.reload();
         }
@@ -40,8 +38,7 @@ public class Crates extends Keys{
     public String getCrateName(Block block){
         if(isCrates(block)){
             Location location = block.getLocation();
-            String loc = location.getX() + ":" + location.getY() + ":" + location.getZ() + ":" + location.getLevelName();
-            return LuckyCrates.pos.getString(loc);
+            return LuckyCrates.pos.getString(getLocationString(location));
         }
         return null;
     }
@@ -49,12 +46,15 @@ public class Crates extends Keys{
     public boolean setCrate(Block block, String crateName){
         if(crateExists(crateName)){
             Location location = block.getLocation();
-            String loc = location.getX() + ":" + location.getY() + ":" + location.getZ() + ":" + location.getLevelName();
-            LuckyCrates.pos.set(loc, crateName);
+            LuckyCrates.pos.set(getLocationString(location), crateName);
             LuckyCrates.pos.save();
             LuckyCrates.pos.reload();
         }
         return false;
+    }
+
+    public String getLocationString(Location location) {
+        return location.getFloorX() + ":" + location.getFloorY() + ":" + location.getFloorZ() + ":" + location.getLevelName();
     }
 
 }

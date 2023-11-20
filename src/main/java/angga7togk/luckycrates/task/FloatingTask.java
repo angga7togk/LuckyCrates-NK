@@ -22,24 +22,24 @@ public class FloatingTask implements Runnable{
             String[] location = loc.split(":");
             String crate = LuckyCrates.pos.getString(loc);
             String name = LuckyCrates.crates.getString(crate + ".floating-text");
-            double x = Double.parseDouble(location[0]);
-            double y = Double.parseDouble(location[1]);
-            double z = Double.parseDouble(location[2]);
+            int x = Integer.parseInt(location[0]);
+            int y = Integer.parseInt(location[1]);
+            int z = Integer.parseInt(location[2]);
             String levelName = location[3];
-            createAndSendPacket(name, 2000 + id++, x, y + 2, z, levelName);
+            createAndSendPacket(name, 2000 + id++, x, y, z, levelName);
         }
     }
 
 
-    private void createAndSendPacket(String name, long id, double x, double y, double z, String levelName)
+    private void createAndSendPacket(String name, long id, int x, int y, int z, String levelName)
     {
         AddPlayerPacket pk = new AddPlayerPacket();
         pk.entityRuntimeId = id;
         pk.entityUniqueId = id;
         pk.uuid = UUID.randomUUID();
-        pk.x = (float) x;
-        pk.y = (float) y;
-        pk.z = (float) z;
+        pk.x = x;
+        pk.y = y;
+        pk.z = z;
         pk.speedX = 0;
         pk.speedY = 0;
         pk.speedZ = 0;

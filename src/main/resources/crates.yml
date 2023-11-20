@@ -23,7 +23,9 @@ Legendary:
       name: "Telepathic Pickaxe"
       lore: "Items mined are transported into your inventory"
       enchantments:
-        - name: "telepathy"
+        - name: "unbreaking"
+          level: 1
+        - name: "knockback"
           level: 1
     - id: 49
       meta: 0
