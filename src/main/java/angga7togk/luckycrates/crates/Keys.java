@@ -7,7 +7,6 @@ import cn.nukkit.item.enchantment.Enchantment;
 import cn.nukkit.nbt.tag.CompoundTag;
 import lombok.Getter;
 
-@Getter
 public class Keys{
     private final int id;
     private final int meta;
@@ -37,18 +36,15 @@ public class Keys{
 
     public boolean giveKey(Player player, String crateName, int amount){
         if (crateExists(crateName)){
-
-            String customName = getName().replace("{crate}", crateName);
-            String lore = getLore().replace("{crate}", crateName);
-            Item item = new Item(getId(), getMeta(), amount)
-                    .setCustomName(customName)
-                    .setLore(lore)
+            String customName = this.name.replace("{crate}", crateName);
+            String lore = this.lore.replace("{crate}", crateName);
+            Item item = new Item(this.id, this.meta, amount)
                     .setNamedTag(new CompoundTag()
                         .putBoolean("isKeys", true)
                         .putString("crateName", crateName));
             item.addEnchantment(Enchantment.getEnchantment(Enchantment.ID_BINDING_CURSE));
             if(isKeys(item)){
-                player.getInventory().addItem(item);
+                player.getInventory().addItem(item.setCustomName(customName).setLore(lore));
                 return true;
             }
         }

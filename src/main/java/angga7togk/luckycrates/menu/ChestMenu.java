@@ -1,8 +1,12 @@
 package angga7togk.luckycrates.menu;
 
 import angga7togk.luckycrates.LuckyCrates;
+import angga7togk.luckycrates.crates.Keys;
 import angga7togk.luckycrates.language.Languages;
+import angga7togk.luckycrates.task.RouletteTask;
 import cn.nukkit.Player;
+import cn.nukkit.Server;
+import cn.nukkit.inventory.Inventory;
 import cn.nukkit.inventory.InventoryType;
 import cn.nukkit.item.Item;
 import cn.nukkit.item.enchantment.Enchantment;
@@ -10,6 +14,7 @@ import cn.nukkit.utils.ConfigSection;
 import cn.nukkit.utils.TextFormat;
 import me.iwareq.fakeinventories.FakeInventory;
 
+import java.io.Serial;
 import java.util.List;
 import java.util.Map;
 
@@ -34,6 +39,7 @@ public class ChestMenu {
             int id = (int) drop.get("id");
             int meta = (int) drop.get("meta");
             int amount = (int) drop.get("amount");
+            int chance = (int) drop.get("chance");
             String customName = drop.containsKey("name") ? (String) drop.get("name") : null;
             String lore = drop.containsKey("lore") ? (String) drop.get("lore") : null;
             Item item = new Item(id, meta, amount);
@@ -41,9 +47,9 @@ public class ChestMenu {
                 item.setCustomName(customName);
             }
             if(lore != null){
-                item.setLore(lore, "Chance, 50(static)");
+                item.setLore(lore, "" ,"§eChance, §r" + chance);
             }else{
-                item.setLore("Chance, 50(static)");
+                item.setLore("", "§eChance, §r" + chance);
             }
             if(drop.containsKey("enchantments")){
                 List<Map<String, Object>> enchantList = (List<Map<String, Object>>) drop.get("enchantments");
@@ -61,12 +67,53 @@ public class ChestMenu {
             i++;
             if(i > 35)break;
         }
-        inv.setItem(49, new Item(130, 0, 1).setCustomName("§l§eOpen Crates"));
+        inv.setItem(49, new Item(130, 0, 1)
+                .setCustomName("§l§eOpen Crates")
+                .setLore("", "§eNeed Key, §r" + crateSect.getInt("amount") ,"§eMy Key, §r" + getKeysCount(player)));
 
         inv.setDefaultItemHandler((item, event) -> {
             event.setCancelled();
+
+            Player target = event.getTransaction().getSource();
+            int myKey = getKeysCount(target);
+            int needKey = crateSect.getInt("amount");
+            if(myKey >= needKey){
+                reduceKey(target, needKey);
+                Server.getInstance().getScheduler().scheduleRepeatingTask(new RouletteTask(target, crateName), 5);
+            }
+
         });
 
         player.addWindow(inv);
+    }
+
+    public int getKeysCount(Player player) {
+        Keys keys = new Keys();
+        int count = 0;
+        for (Item invItem : player.getInventory().getContents().values()) {
+            if (keys.isKeys(invItem)) {
+                count += invItem.getCount();
+            }
+        }
+        return count;
+    }
+
+    public void reduceKey(Player player, int amount) {
+        Inventory inv = player.getInventory();
+        Keys keys = new Keys();
+        for (int slot : inv.getContents().keySet()) {
+            Item invItem = inv.getItem(slot);
+            if (keys.isKeys(invItem)) {
+                int itemCount = invItem.getCount();
+                if (itemCount <= amount) {
+                    inv.clear(slot);
+                    amount -= itemCount;
+                } else {
+                    invItem.setCount(itemCount - amount);
+                    inv.setItem(slot, invItem);
+                    break;
+                }
+            }
+        }
     }
 }

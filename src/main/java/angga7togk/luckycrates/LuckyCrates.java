@@ -28,11 +28,9 @@ public class LuckyCrates extends PluginBase {
         prefix = cfg.getString("prefix");
 
         this.getServer().getPluginManager().registerEvents(new Listeners(), this);
-
         this.getServer().getCommandMap().register("cratesCommand", new GiveKey());
         this.getServer().getCommandMap().register("cratesCommand", new KeyAll());
         this.getServer().getCommandMap().register("cratesCommand", new SetCrates());
-
         this.getServer().getScheduler().scheduleRepeatingTask(this, new FloatingTask(), 20 * 5, true);
     }
 

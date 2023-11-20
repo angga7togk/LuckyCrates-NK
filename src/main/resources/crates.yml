@@ -4,7 +4,7 @@ Common:
     - id: 1
       meta: 0
       amount: 16
-      chance: 25
+      chance: 25 # chance 1 - 100
     - id: 263
       meta: 0
       chance: 75

@@ -7,8 +7,8 @@ import cn.nukkit.entity.Entity;
 import cn.nukkit.entity.data.EntityMetadata;
 import cn.nukkit.item.Item;
 import cn.nukkit.level.Level;
-import cn.nukkit.level.Location;
 import cn.nukkit.network.protocol.AddPlayerPacket;
+import cn.nukkit.network.protocol.RemoveEntityPacket;
 
 import java.util.UUID;
 
@@ -26,12 +26,21 @@ public class FloatingTask implements Runnable{
             int y = Integer.parseInt(location[1]);
             int z = Integer.parseInt(location[2]);
             String levelName = location[3];
-            createAndSendPacket(name, 2000 + id++, x, y, z, levelName);
+            createEntity(name, 2000 + id++, x, y + 1, z + 1, levelName);
         }
     }
 
+    private void removeEntity(long id, String levelName){
+        RemoveEntityPacket pk = new RemoveEntityPacket();
+        pk.eid = id;
 
-    private void createAndSendPacket(String name, long id, int x, int y, int z, String levelName)
+        for (Player p : Server.getInstance().getOnlinePlayers().values()){
+            Level level = Server.getInstance().getLevelByName(levelName);
+            if(level != null && p.getLevel() == level) p.dataPacket(pk);
+        }
+    }
+
+    private void createEntity(String name, long id, int x, int y, int z, String levelName)
     {
         AddPlayerPacket pk = new AddPlayerPacket();
         pk.entityRuntimeId = id;
@@ -58,6 +67,5 @@ public class FloatingTask implements Runnable{
             Level level = Server.getInstance().getLevelByName(levelName);
             if(level != null && p.getLevel() == level) p.dataPacket(pk);
         }
-
     }
 }
