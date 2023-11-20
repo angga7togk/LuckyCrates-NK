@@ -1,0 +1,14 @@
+# Options Language
+# id = Indonesian
+# en = English
+language: en
+
+#Prefix Message
+prefix: "§l§a[§r§eLuckyCrates§l§a] §r"
+
+# Keys Item
+keys:
+  id: 131
+  meta: 0
+  name: "{crate} Key"
+  lore: "Claim rewards from a {crate} Crate"

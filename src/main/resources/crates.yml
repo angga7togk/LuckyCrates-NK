@@ -1,0 +1,45 @@
+Common:
+  # maximum drop is 36 slots, if it is higher it will be ignored
+  drops:
+    - id: 1
+      meta: 0
+      amount: 16
+      chance: 25
+    - id: 263
+      meta: 0
+      chance: 75
+      amount: 10
+  amount: 1
+  commands:
+    - "say {player} has opened an Common Crate"
+  floating-text: "Common Crate"
+Legendary:
+  # maximum drop is 36 slots, if it is higher it will be ignored
+  drops:
+    - id: 278
+      meta: 0
+      amount: 1
+      chance: 10
+      name: "Telepathic Pickaxe"
+      lore: "Items mined are transported into your inventory"
+      enchantments:
+        - name: "telepathy"
+          level: 1
+    - id: 49
+      meta: 0
+      amount: 32
+      chance: 15
+      name: "Money 1000"
+      commands:
+        - "givemoney {player} 1000"
+    - id: 466
+      meta: 0
+      amount: 16
+      chance: 70
+    - id: 7
+      meta: 0
+      amount: 5
+      chance: 5
+  amount: 1
+  commands: ["say {PLAYER} has opened an Legendary Crate"]
+  floating-text: "Legendary Crate"
