@@ -6,6 +6,10 @@ language: en
 #Prefix Message
 prefix: "§l§a[§r§eLuckyCrates§l§a] §r"
 
+# Options Crates:
+# chest, enderchest
+crates: enderchest
+
 # Keys Item
 keys:
   id: 131
