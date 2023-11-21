@@ -11,7 +11,7 @@ public abstract class CratesCommand extends Command {
 
     public CratesCommand(String name, String description, String usageMessage, String[] aliases) {
         super(name, description, usageMessage, aliases);
-        this.setPermission("crates.command");
+        this.setPermission("luckycrates.command");
     }
 
     @Override
