@@ -1,5 +1,4 @@
-# LuckyCrates-NK
-
+# <img src='https://github.com/angga7togk/LuckyCrates-NK/blob/8169905ea0640a2df6d8c0cc6e89e829375e1c1d/treasure-chest.png' width='50'> LuckyCrates-NK
 LuckyCrates-NK is an exciting and customizable plugin for Nukkit, designed to bring a new level of fun and rewards to your server through engaging crate systems. Whether you want to offer common items, custom creations, enchanted gear, or execute commands upon crate opening, LuckyCrates-NK has got you covered.
 
 This plugin is inspired by [PiggyCrates](https://github.com/DaPigGuy/PiggyCrates).
@@ -22,8 +21,6 @@ This plugin is inspired by [PiggyCrates](https://github.com/DaPigGuy/PiggyCrates
 ### Configuration
 
 Edit the `crates.yml` file in the plugin folder to customize your crates. Refer to the provided examples for detailed instructions on configuring your crates.
-
-### Instruction
 ```YAML
 # Name crates
 Common: 
@@ -73,46 +70,6 @@ Common:
   # floating text, which will appear on crates / blocks that have been made into crates in the world
   floating-text: "Common Crate"
 ```
-
-### Clean
-```YAML
-Common: 
-  drops:
-    - id: 1
-      meta: 0 
-      amount: 16 
-      chance: 25 # chance 1 - 100
-    - id: 263
-      meta: 0
-      name: "Item Custom"
-      lore: "nice item made by angga7togk"
-      chance: 75
-      amount: 10
-    - id: 278
-      meta: 0
-      amount: 1
-      chance: 10
-      name: "Telepathic Pickaxe"
-      lore: "Items mined are transported into your inventory"
-      enchantments:
-        - name: "unbreaking"
-          level: 1
-        - name: "knockback"
-          level: 1
-    - id: 49
-      meta: 0
-      amount: 32
-      chance: 15
-      name: "Money 1000"
-      commands:
-        - "givemoney {player} 1000"
-        - "give {player} bread 1"
-  amount: 1
-  commands: 
-    - "say {player} has opened an Common Crate"
-  floating-text: "Common Crate"
-```
-
 ### Commands and Permissions
 
 - `/setcrate <crate>` - Set a crate by breaking a block.
