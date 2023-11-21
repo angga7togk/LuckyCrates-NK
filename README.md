@@ -14,7 +14,7 @@ This plugin is inspired by [PiggyCrates](https://github.com/DaPigGuy/PiggyCrates
 
 ### Installation
 1. Download the latest release from [LuckyCrates](https://github.com/angga7togk/LuckyCrates-NK/releases).
-2. Download the defend plugin [FakeInventories v1.1.5](https://github.com/IWareQ/FakeInventories/releases/tag/v1.1.5).
+2. Download the depend plugin [FakeInventories v1.1.5](https://github.com/IWareQ/FakeInventories/releases/tag/v1.1.5).
 3. Place the JAR file into the `plugins` folder of your Nukkit server.
 4. Start or reload your server.
 
