@@ -72,15 +72,13 @@ public class ChestMenu {
 
         inv.setDefaultItemHandler((item, event) -> {
             event.setCancelled();
-
             Player target = event.getTransaction().getSource();
             int myKey = getKeysCount(target);
             int needKey = crateSect.getInt("amount");
             if(myKey >= needKey){
                 reduceKey(target, needKey);
-                Server.getInstance().getScheduler().scheduleRepeatingTask(new RouletteTask(target, crateName), 5);
+                Server.getInstance().getScheduler().scheduleRepeatingTask(new RouletteTask(target, crateName), LuckyCrates.getInstance().getConfig().getInt("crates.roulette.speed", 5));
             }
-
         });
 
         player.addWindow(inv);

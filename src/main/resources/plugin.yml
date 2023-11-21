@@ -5,6 +5,8 @@ api: 1.0.0
 authors:
   - Angga7Togk
   - AraaCuteUwU
+depend:
+  - FakeInventories
 
 permissions:
   luckycrates:

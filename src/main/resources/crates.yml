@@ -14,7 +14,6 @@ Common:
     - "say {player} has opened an Common Crate"
   floating-text: "Common Crate"
 Legendary:
-  # maximum drop is 36 slots, if it is higher it will be ignored
   drops:
     - id: 278
       meta: 0

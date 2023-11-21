@@ -6,9 +6,16 @@ language: en
 #Prefix Message
 prefix: "§l§a[§r§eLuckyCrates§l§a] §r"
 
-# Options Crates:
-# chest, enderchest
-crates: enderchest
+crates:
+  # Options : roulette, instant
+  type: roulette
+  # roulette will be useful if you use the roulette type
+  roulette:
+    # speed is the rotation speed
+    # 1 second = 20
+    speed: 5
+    # round is the number of rounds when the crate is open
+    round: 25
 
 # Keys Item
 keys:
@@ -16,3 +23,5 @@ keys:
   meta: 0
   name: "{crate} Key"
   lore: "Claim rewards from a {crate} Crate"
+
+config-version: 1.0.0

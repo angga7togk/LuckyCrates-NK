@@ -26,7 +26,7 @@ public class FloatingTask implements Runnable{
             int y = Integer.parseInt(location[1]);
             int z = Integer.parseInt(location[2]);
             String levelName = location[3];
-            createEntity(name, 2000 + id++, x, y + 1, z + 1, levelName);
+            createEntity(name, (long) (2000 + id++), x, y + 1, (int) (z + 0.5), levelName);
         }
     }
 
@@ -40,7 +40,7 @@ public class FloatingTask implements Runnable{
         }
     }
 
-    private void createEntity(String name, long id, int x, int y, int z, String levelName)
+    private void createEntity(String name, long id, int x, int y, float z, String levelName)
     {
         AddPlayerPacket pk = new AddPlayerPacket();
         pk.entityRuntimeId = id;
