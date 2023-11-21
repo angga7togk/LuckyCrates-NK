@@ -99,6 +99,6 @@ Icon By [Flaticon](https://www.flaticon.com)
 
 This plugin is tested and compatible with [FakeInventories v1.1.5](https://github.com/IWareQ/FakeInventories/releases/tag/v1.1.5).
 
-Feel free to contribute, report issues, or suggest improvements on [GitHub](https://github.com/angga7togk/LuckyCrates-NK).
+Feel free to contribute, report issues, or suggest improvements on [GitHub](https://github.com/angga7togk/LuckyCrates-NK/issues).
 
 Enjoy the thrill of LuckyCrates-NK on your Nukkit server!
