@@ -5,7 +5,6 @@ import cn.nukkit.Player;
 import cn.nukkit.item.Item;
 import cn.nukkit.item.enchantment.Enchantment;
 import cn.nukkit.nbt.tag.CompoundTag;
-import lombok.Getter;
 
 public class Keys{
     private final int id;
@@ -13,10 +12,10 @@ public class Keys{
     private final String name;
     private final String lore;
     public Keys(){
-        this.id = LuckyCrates.cfg.getInt("keys.id", 131);
-        this.meta = LuckyCrates.cfg.getInt("keys.meta", 0);
-        this.name = LuckyCrates.cfg.getString("keys.name", "{crate} Key");
-        this.lore = LuckyCrates.cfg.getString("keys.lore", "Claim rewards from a {crate} Crate");
+        this.id = LuckyCrates.getInstance().getConfig().getInt("keys.id", 131);
+        this.meta = LuckyCrates.getInstance().getConfig().getInt("keys.meta", 0);
+        this.name = LuckyCrates.getInstance().getConfig().getString("keys.name", "{crate} Key");
+        this.lore = LuckyCrates.getInstance().getConfig().getString("keys.lore", "Claim rewards from a {crate} Crate");
     }
 
     public boolean isKeys(Item item) {
@@ -24,8 +23,8 @@ public class Keys{
         int meta = item.getDamage();
         CompoundTag nameTag = item.hasCompoundTag() ? item.getNamedTag() : null;
         
-        return id == LuckyCrates.cfg.getInt("keys.id", 131)
-                && meta == LuckyCrates.cfg.getInt("keys.meta", 0)
+        return id == LuckyCrates.getInstance().getConfig().getInt("keys.id", 131)
+                && meta == LuckyCrates.getInstance().getConfig().getInt("keys.meta", 0)
                 && nameTag != null
                 && nameTag.contains("isKeys");
     }

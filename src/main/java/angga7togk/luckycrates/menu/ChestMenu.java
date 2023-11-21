@@ -14,7 +14,6 @@ import cn.nukkit.utils.ConfigSection;
 import cn.nukkit.utils.TextFormat;
 import me.iwareq.fakeinventories.FakeInventory;
 
-import java.io.Serial;
 import java.util.List;
 import java.util.Map;
 

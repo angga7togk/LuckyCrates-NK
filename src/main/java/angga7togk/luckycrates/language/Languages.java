@@ -6,12 +6,12 @@ import lombok.Getter;
 import java.util.HashMap;
 import java.util.Map;
 
+@Getter
 public class Languages {
 
-    @Getter
     private final String lang;
     public Languages(){
-        String lang = LuckyCrates.cfg.getString("language");
+        String lang = LuckyCrates.getInstance().getConfig().getString("language");
         if(lang.equalsIgnoreCase("id") || lang.equalsIgnoreCase("en")){
             this.lang = lang;
         }else{

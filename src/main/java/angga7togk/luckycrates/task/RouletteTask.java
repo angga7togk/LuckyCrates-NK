@@ -71,9 +71,7 @@ public class RouletteTask extends Task {
         for (int i = 28; i >= 19; i -= 9) {
             setRouletteItem(random, i);
         }
-        this.inv.setDefaultItemHandler((item, event) -> {
-            event.setCancelled();
-        });
+        this.inv.setDefaultItemHandler((item, event) -> event.setCancelled());
         this.player.getLevel().addSound(player.getPosition(), Sound.RANDOM_CLICK);
         this.player.addWindow(this.inv);
     }

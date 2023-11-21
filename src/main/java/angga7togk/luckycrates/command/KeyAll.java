@@ -2,7 +2,6 @@ package angga7togk.luckycrates.command;
 
 import angga7togk.luckycrates.LuckyCrates;
 import angga7togk.luckycrates.crates.Keys;
-import cn.nukkit.Player;
 import cn.nukkit.Server;
 import cn.nukkit.command.CommandSender;
 
