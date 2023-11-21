@@ -23,7 +23,6 @@ public class LuckyCrates extends PluginBase {
     public static String prefix;
     @Override
     public void onEnable() {
-        instance = this;
         for (String filename : Arrays.asList("crates.yml", "position.yml")) {
             saveResource(filename);
         }
