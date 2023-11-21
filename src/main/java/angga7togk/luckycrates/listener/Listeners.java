@@ -52,7 +52,7 @@ public class Listeners implements Listener {
         Player player = event.getPlayer();
         Block block = event.getBlock();
         Crates crates = new Crates();
-        Map<String, String> lang = new Languages().getLanguage();
+//        Map<String, String> lang = new Languages().getLanguage();
         if (Objects.requireNonNull(event.getAction()) == PlayerInteractEvent.Action.RIGHT_CLICK_BLOCK) {
             assert block != null;
             if(crates.isCrates(block)){
