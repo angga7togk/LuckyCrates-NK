@@ -13,6 +13,7 @@ import cn.nukkit.nbt.tag.StringTag;
 import cn.nukkit.scheduler.Task;
 import cn.nukkit.utils.ConfigSection;
 import cn.nukkit.utils.TextFormat;
+import lombok.Getter;
 import me.iwareq.fakeinventories.FakeInventory;
 
 import java.util.*;
@@ -21,6 +22,7 @@ public class RouletteTask extends Task {
     private final FakeInventory inv;
     private int currentTick = 0;
     private int round;
+    @Getter
     private final Player player;
     private final List<Map<String, Object>> safeDrops = new ArrayList<>();
 
@@ -35,7 +37,7 @@ public class RouletteTask extends Task {
         List<Map<String, Object>> drops = crateSection.getList("drops");
         drops.forEach((objectMap -> {
             int chance = Math.min((int) objectMap.get("chance"), 100);
-            for (int i = 0; i <= chance; i++) {
+            for (int i = 0; i <= ((chance > 30) ? chance * 2 : chance); i++) {
                 this.safeDrops.add(objectMap);
             }
         }));
@@ -64,7 +66,7 @@ public class RouletteTask extends Task {
             List<String> commands = getCommandsFromItem(item);
             if(commands != null){
                 for (String command : commands){
-                    Server.getInstance().dispatchCommand(Server.getInstance().getConsoleSender(), command);
+                    Server.getInstance().dispatchCommand(Server.getInstance().getConsoleSender(), command.replace("{player}", this.getPlayer().getName()));
                 }
             }
         }
@@ -84,8 +86,8 @@ public class RouletteTask extends Task {
             setRouletteItem(random, i);
         }
         this.inv.setDefaultItemHandler((item, event) -> event.setCancelled());
-        this.player.getLevel().addSound(player.getPosition(), Sound.RANDOM_CLICK);
-        this.player.addWindow(this.inv);
+        this.getPlayer().getLevel().addSound(player.getPosition(), Sound.RANDOM_CLICK);
+        this.getPlayer().addWindow(this.inv);
     }
 
     private void setRouletteItem(Random random, int slot) {
@@ -115,12 +117,8 @@ public class RouletteTask extends Task {
         if (customName != null) {
             item.setCustomName(customName);
         }
-
-        int chance = (int) drop.get("chance");
         if(lore != null){
-            item.setLore(lore, "" ,"§eChance, §r" + chance);
-        }else{
-            item.setLore("", "§eChance, §r" + chance);
+            item.setLore(lore);
         }
 
         if (drop.containsKey("enchantments")) {
@@ -152,7 +150,7 @@ public class RouletteTask extends Task {
         CompoundTag namedTag = (item.getNamedTag() != null) ? item.getNamedTag() : new CompoundTag();
         ListTag<StringTag> commandListTag = new ListTag<>();
         for (String command : commands) {
-            commandListTag.add(new StringTag("", command.replace("{player}", this.player.getName())));
+            commandListTag.add(new StringTag("", command.replace("{player}", this.getPlayer().getName())));
         }
         namedTag.putList("commands", commandListTag);
         item.setNamedTag(namedTag);
@@ -173,7 +171,7 @@ public class RouletteTask extends Task {
     }
 
     private void stopRoulette() {
-        this.player.removeWindow(this.inv);
+        this.getPlayer().removeWindow(this.inv);
         this.cancel();
     }
 }

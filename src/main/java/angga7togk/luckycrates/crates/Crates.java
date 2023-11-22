@@ -49,6 +49,7 @@ public class Crates extends Keys{
             LuckyCrates.pos.set(getLocationString(location), crateName);
             LuckyCrates.pos.save();
             LuckyCrates.pos.reload();
+            return true;
         }
         return false;
     }

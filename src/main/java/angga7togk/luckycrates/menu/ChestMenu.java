@@ -3,6 +3,7 @@ package angga7togk.luckycrates.menu;
 import angga7togk.luckycrates.LuckyCrates;
 import angga7togk.luckycrates.crates.Keys;
 import angga7togk.luckycrates.language.Languages;
+import angga7togk.luckycrates.task.InstantTask;
 import angga7togk.luckycrates.task.RouletteTask;
 import cn.nukkit.Player;
 import cn.nukkit.Server;
@@ -14,6 +15,7 @@ import cn.nukkit.utils.ConfigSection;
 import cn.nukkit.utils.TextFormat;
 import me.iwareq.fakeinventories.FakeInventory;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -76,8 +78,19 @@ public class ChestMenu {
             int myKey = getKeysCount(target);
             int needKey = crateSect.getInt("amount");
             if(myKey >= needKey){
+                if(crateSect.exists("commands", true)){
+                    for (String command : crateSect.getStringList("commands")){
+                        Server.getInstance().dispatchCommand(Server.getInstance().getConsoleSender(), command.replace("{player}", target.getName()));
+                    }
+                }
                 reduceKey(target, needKey);
-                Server.getInstance().getScheduler().scheduleRepeatingTask(new RouletteTask(target, crateName), LuckyCrates.getInstance().getConfig().getInt("crates.roulette.speed", 5));
+                String type = LuckyCrates.getInstance().getConfig().getString("crates.type", "roulette");
+                if(type.equalsIgnoreCase("instant")){
+                    target.removeWindow(inv);
+                    Server.getInstance().getScheduler().scheduleDelayedTask(new InstantTask(target, crateName), 5);
+                }else{
+                    Server.getInstance().getScheduler().scheduleRepeatingTask(new RouletteTask(target, crateName), LuckyCrates.getInstance().getConfig().getInt("crates.roulette.speed", 5));
+                }
             }
         });
 

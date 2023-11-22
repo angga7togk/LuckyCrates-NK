@@ -84,16 +84,12 @@ public class LuckyCrates extends PluginBase {
                     int meta = (int) drop.get("meta");
                     int amount = (int) drop.get("amount");
                     Item item = new Item(id, meta, amount);
-                    if(item.isNull()){
-                        throw new RuntimeException("Item ID:" + id + " META:" +meta + " not found!");
-                    }
+                    if(item.isNull()) throw new RuntimeException("Item ID:" + id + " META:" +meta + " not found!");
                     if(drop.containsKey("enchantments")){
                         List<Map<String, Object>> enchantList = (List<Map<String, Object>>) drop.get("enchantments");
                         for (Map<String, Object> enchant : enchantList){
                             String enchantName = (String) enchant.get("name");
-                            if(Enchantment.getEnchantment(enchantName) == null){
-                                throw new RuntimeException("Error Enchantment not found : " + enchantName);
-                            }
+                            if(Enchantment.getEnchantment(enchantName) == null) throw new RuntimeException("Error Enchantment not found : " + enchantName);
                         }
                     }
                 }
