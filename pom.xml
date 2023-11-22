@@ -6,7 +6,7 @@
 
     <groupId>angga7togk.luckycrates</groupId>
     <artifactId>LuckyCrates</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.2</version>
     <name>LuckyCrates</name>
 
     <properties>
