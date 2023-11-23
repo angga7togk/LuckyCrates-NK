@@ -29,6 +29,13 @@ public class Keys{
                 && nameTag.contains("isKeys");
     }
 
+    public String getCrateName(Item item){
+        if(isKeys(item)){
+            return item.getNamedTag().getString("crateName");
+        }
+        return null;
+    }
+
     public boolean crateExists(String crateName) {
         return LuckyCrates.crates.exists(crateName);
     }

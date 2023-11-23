@@ -70,12 +70,12 @@ public class ChestMenu {
         }
         inv.setItem(49, new Item(130, 0, 1)
                 .setCustomName("§l§eOpen Crates")
-                .setLore("", "§eNeed Key, §r" + crateSect.getInt("amount") ,"§eMy Key, §r" + getKeysCount(player)));
+                .setLore("", "§eNeed Key, §r" + crateSect.getInt("amount") ,"§eMy Key, §r" + getKeysCount(player, crateName)));
 
         inv.setDefaultItemHandler((item, event) -> {
             event.setCancelled();
             Player target = event.getTransaction().getSource();
-            int myKey = getKeysCount(target);
+            int myKey = getKeysCount(target, crateName);
             int needKey = crateSect.getInt("amount");
             if(myKey >= needKey){
                 if(crateSect.exists("commands", true)){
@@ -83,7 +83,7 @@ public class ChestMenu {
                         Server.getInstance().dispatchCommand(Server.getInstance().getConsoleSender(), command.replace("{player}", target.getName()));
                     }
                 }
-                reduceKey(target, needKey);
+                reduceKey(target, crateName, needKey);
                 String type = LuckyCrates.getInstance().getConfig().getString("crates.type", "roulette");
                 if(type.equalsIgnoreCase("instant")){
                     target.removeWindow(inv);
@@ -97,31 +97,35 @@ public class ChestMenu {
         player.addWindow(inv);
     }
 
-    public int getKeysCount(Player player) {
+    public int getKeysCount(Player player, String crateName) {
         Keys keys = new Keys();
         int count = 0;
         for (Item invItem : player.getInventory().getContents().values()) {
             if (keys.isKeys(invItem)) {
-                count += invItem.getCount();
+                if(keys.getCrateName(invItem).equalsIgnoreCase(crateName)){
+                    count += invItem.getCount();
+                }
             }
         }
         return count;
     }
 
-    public void reduceKey(Player player, int amount) {
+    public void reduceKey(Player player, String crateName, int amount) {
         Inventory inv = player.getInventory();
         Keys keys = new Keys();
         for (int slot : inv.getContents().keySet()) {
             Item invItem = inv.getItem(slot);
             if (keys.isKeys(invItem)) {
-                int itemCount = invItem.getCount();
-                if (itemCount <= amount) {
-                    inv.clear(slot);
-                    amount -= itemCount;
-                } else {
-                    invItem.setCount(itemCount - amount);
-                    inv.setItem(slot, invItem);
-                    break;
+                if(keys.getCrateName(invItem).equalsIgnoreCase(crateName)){
+                    int itemCount = invItem.getCount();
+                    if (itemCount <= amount) {
+                        inv.clear(slot);
+                        amount -= itemCount;
+                    } else {
+                        invItem.setCount(itemCount - amount);
+                        inv.setItem(slot, invItem);
+                        break;
+                    }
                 }
             }
         }
