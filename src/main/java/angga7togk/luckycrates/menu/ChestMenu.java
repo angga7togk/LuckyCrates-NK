@@ -57,11 +57,12 @@ public class ChestMenu {
                 for (Map<String, Object> enchant : enchantList){
                     String enchantName = (String) enchant.get("name");
                     int enchantLevel = (int) enchant.get("level");
-                    if(Enchantment.getEnchantment(enchantName) == null){
+                    Integer enchantId = LuckyCrates.getEnchantmentByName(enchantName);
+                    if(enchantId == null){
                         player.sendMessage("§cError Enchantment not found : " + enchantName);
                         return;
                     }
-                    item.addEnchantment(Enchantment.getEnchantment(enchantName).setLevel(enchantLevel));
+                    item.addEnchantment(Enchantment.getEnchantment(enchantId).setLevel(enchantLevel));
                 }
             }
             inv.addItem(item);

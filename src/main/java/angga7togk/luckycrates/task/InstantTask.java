@@ -63,11 +63,12 @@ public class InstantTask extends Task {
             for (Map<String, Object> enchant : enchantList){
                 String enchantName = (String) enchant.get("name");
                 int enchantLevel = (int) enchant.get("level");
-                if(Enchantment.getEnchantment(enchantName) == null){
+                Integer enchantId = LuckyCrates.getEnchantmentByName(enchantName);
+                if(enchantId == null){
                     this.getPlayer().sendMessage("§cError Enchantment not found : " + enchantName);
                     return null;
                 }
-                item.addEnchantment(Enchantment.getEnchantment(enchantName).setLevel(enchantLevel));
+                item.addEnchantment(Enchantment.getEnchantment(enchantId).setLevel(enchantLevel));
             }
         }
         return item;

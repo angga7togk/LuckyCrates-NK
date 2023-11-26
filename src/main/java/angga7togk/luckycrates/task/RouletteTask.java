@@ -135,14 +135,13 @@ public class RouletteTask extends Task {
     private void addEnchantmentToItem(Item item, Map<String, Object> enchant) {
         String enchantName = (String) enchant.get("name");
         int enchantLevel = (int) enchant.get("level");
+        Integer enchantId = LuckyCrates.getEnchantmentByName(enchantName);
 
-        Enchantment enchantment = Enchantment.getEnchantment(enchantName);
-
-        if (enchantment == null) {
+        if (enchantId == null) {
             player.sendMessage("§cError Enchantment not found : " + enchantName);
             return;
         }
-
+        Enchantment enchantment = Enchantment.getEnchantment(enchantId);
         item.addEnchantment(enchantment.setLevel(enchantLevel));
     }
 
@@ -152,7 +151,7 @@ public class RouletteTask extends Task {
         for (String command : commands) {
             commandListTag.add(new StringTag("", command.replace("{player}", this.getPlayer().getName())));
         }
-        namedTag.putList("commands", commandListTag);
+        namedTag.putList(commandListTag);
         item.setNamedTag(namedTag);
     }
 

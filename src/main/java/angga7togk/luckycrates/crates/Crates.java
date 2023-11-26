@@ -55,7 +55,7 @@ public class Crates extends Keys{
     }
 
     public String getLocationString(Location location) {
-        return location.getFloorX() + ":" + location.getFloorY() + ":" + location.getFloorZ() + ":" + location.getLevelName();
+        return location.getFloorX() + ":" + location.getFloorY() + ":" + location.getFloorZ() + ":" + location.getLevel().getName();
     }
 
 }

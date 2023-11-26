@@ -89,7 +89,7 @@ public class LuckyCrates extends PluginBase {
                         List<Map<String, Object>> enchantList = (List<Map<String, Object>>) drop.get("enchantments");
                         for (Map<String, Object> enchant : enchantList){
                             String enchantName = (String) enchant.get("name");
-                            if(Enchantment.getEnchantment(enchantName) == null) throw new RuntimeException("Error Enchantment not found : " + enchantName);
+                            if(getEnchantmentByName(enchantName) == null) throw new RuntimeException("Error Enchantment not found : " + enchantName);
                         }
                     }
                 }
@@ -99,5 +99,48 @@ public class LuckyCrates extends PluginBase {
             this.getServer().shutdown();
         }
     }
-
+    
+    public static Integer getEnchantmentByName(String enchant){
+        Map<String, Integer> enchantmentsMap = new HashMap<>();
+        enchantmentsMap.put("protection", 0);
+        enchantmentsMap.put("fire_protection", 1);
+        enchantmentsMap.put("feather_falling", 2);
+        enchantmentsMap.put("blast_protection", 3);
+        enchantmentsMap.put("projectile_protection", 4);
+        enchantmentsMap.put("thorns", 5);
+        enchantmentsMap.put("respiration", 6);
+        enchantmentsMap.put("aqua_affinity", 7);
+        enchantmentsMap.put("depth_strider", 8);
+        enchantmentsMap.put("sharpness", 9);
+        enchantmentsMap.put("smite", 10);
+        enchantmentsMap.put("bane_of_arthropods", 11);
+        enchantmentsMap.put("knockback", 12);
+        enchantmentsMap.put("fire_aspect", 13);
+        enchantmentsMap.put("looting", 14);
+        enchantmentsMap.put("efficiency", 15);
+        enchantmentsMap.put("silk_touch", 16);
+        enchantmentsMap.put("unbreaking", 17);
+        enchantmentsMap.put("fortune", 18);
+        enchantmentsMap.put("power", 19);
+        enchantmentsMap.put("punch", 20);
+        enchantmentsMap.put("flame", 21);
+        enchantmentsMap.put("infinity", 22);
+        enchantmentsMap.put("luck_of_the_sea", 23);
+        enchantmentsMap.put("lure", 24);
+        enchantmentsMap.put("frost_walker", 25);
+        enchantmentsMap.put("mending", 26);
+        enchantmentsMap.put("binding", 27);
+        enchantmentsMap.put("vanishing", 28);
+        enchantmentsMap.put("impaling", 29);
+        enchantmentsMap.put("riptide", 30);
+        enchantmentsMap.put("loyalty", 31);
+        enchantmentsMap.put("channeling", 32);
+        enchantmentsMap.put("multishot", 33);
+        enchantmentsMap.put("piercing", 34);
+        enchantmentsMap.put("quick_charge", 35);
+        enchantmentsMap.put("soul_speed", 36);
+        enchantmentsMap.put("swift_sneak", 37);
+        if(enchantmentsMap.containsKey(enchant)) return enchantmentsMap.get(enchant);
+        return null;
+    }
 }
