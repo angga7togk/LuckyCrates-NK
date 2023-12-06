@@ -1,46 +1,740 @@
-Common:
-  # maximum drop is 36 slots, if it is higher it will be ignored
-  drops:
-    - id: 1
-      meta: 0
-      amount: 16
-      chance: 25 # chance 1 - 100
-    - id: 263
-      meta: 0
-      chance: 75
-      amount: 10
+Legendary:
   amount: 1
   commands:
-    - "say {player} has opened an Common Crate"
-  floating-text: "Common Crate"
-Legendary:
+    - "say {player} has opened an Legendary Crate"
+  floating-text: "Legendary Crate"
   drops:
-    - id: 278
+    - id: 748
       meta: 0
       amount: 1
-      chance: 10
-      name: "Telepathic Pickaxe"
+      chance: 1
+      name: "§l4bEternity Helmet"
       lore: "Items mined are transported into your inventory"
       enchantments:
         - name: "unbreaking"
+          level: 5
+        - name: "mending"
+          level: 1
+        - name : "respiration"
+          level: 3
+        - name: "aqua_affinity"
+          level: 1
+        - name: "thorns"
+          level: 3
+        - name: "protection"
+          level: 5
+        - name: "blast_protection"
+          level: 5
+        - name: "fire_protection"
+          level: 5
+        - name: "projectile_protection"
+          level: 5
+    - id: 749
+      meta: 0
+      amount: 1
+      chance: 1
+      name: "§l§4Eternity Chestplate"
+      lore: "Items mined are transported into your inventory"
+      enchantments:
+        - name: "unbreaking"
+          level: 5
+        - name: "mending"
+          level: 1
+        - name: "protection"
+          level: 5
+        - name: "blast_protection"
+          level: 5
+        - name: "fire_protection"
+          level: 5
+        - name: "projectile_protection"
+          level: 5
+        - name: "thorns"
+          level: 3
+    - id: 750
+      meta: 0
+      amount: 1
+      chance: 1
+      name: "§l§4Eternity Leggings"
+      lore: "Items mined are transported into your inventory"
+      enchantments:
+        - name: "unbreaking"
+          level: 5
+        - name: "mending"
+          level: 1
+        - name: "protection"
+          level: 5
+        - name: "blast_protection"
+          level: 5
+        - name: "fire_protection"
+          level: 5
+        - name: "projectile_protection"
+          level: 5
+        - name: "thorns"
+          level: 3
+        - name: "swift_sneak"
+          level: 3
+    - id: 751
+      meta: 0
+      amount: 1
+      chance: 1
+      name: "§l§4Eternity Boots"
+      lore: "Items mined are transported into your inventory"
+      enchantments:
+        - name: "unbreaking"
+          level: 5
+        - name: "mending"
+          level: 1
+        - name: "protection"
+          level: 5
+        - name: "blast_protection"
+          level: 5
+        - name: "fire_protection"
+          level: 5
+        - name: "projectile_protection"
+          level: 5
+        - name: "thorns"
+          level: 3
+        - name: "feather_falling"
+          level: 4
+        - name: "depth_strider"
+          level: 3
+        - name: "soul_speed"
+          level: 3
+    - id: 743
+      meta: 0
+      amount: 1
+      chance: 1
+      name: "§l§4Eternity Sword"
+      lore: "Items mined are transported into your inventory"
+      enchantments:
+        - name: "unbreaking"
+          level: 5
+        - name: "mending"
+          level: 1
+        - name: "sharpness"
+          level: 6
+        - name: "fire_aspect"
+          level: 1
+        - name: "knockback"
+          level: 3
+        - name: "looting"
+          level: 4
+        - name: "bane_of_arthropods"
+          level: 6
+    - id: 744
+      meta: 0
+      amount: 1
+      chance: 2
+      name: "§l§4Eternity Shovels"
+      lore: "Items mined are transported into your inventory"
+      enchantments:
+        - name: "unbreaking"
+          level: 5
+        - name:  "efficiency"
+          level: 6
+        - name: "mending"
+          level: 1
+        - name: "silk_touch"
+          level: 1
+    - id: 746
+      meta: 0
+      amount: 1
+      chance: 1
+      name: "§l§4Eternity Axe"
+      lore: "Items mined are transported into your inventory"
+      enchantments:
+        - name: "unbreaking"
+          level: 5
+        - name:  "efficiency"
+          level: 6
+        - name: "mending"
+          level: 1
+        - name: "silk_touch"
+          level: 1
+        - name: "smite"
+          level: 6
+    - id: 745
+      meta: 0
+      amount: 1
+      chance: 1
+      name: "§l§4Eternity Pickaxe §bFT"
+      lore: "Items mined are transported into your inventory"
+      enchantments:
+        - name: "unbreaking"
+          level: 5
+        - name:  "efficiency"
+          level: 6
+        - name: "mending"
+          level: 1
+        - name: "fortune"
+          level: 4
+    - id: 745
+      meta: 0
+      amount: 1
+      chance: 2
+      name: "§l§4Eternity Pickaxe §bST"
+      lore: "Items mined are transported into your inventory"
+      enchantments:
+        - name: "unbreaking"
+          level: 5
+        - name: "efficiency"
+          level: 6
+        - name: "mending"
+          level: 1
+        - name: "silk_touch"
+          level: 1
+    - id: 747
+      meta: 0
+      amount: 1
+      chance: 2
+      name: "§l§4Eternity Hoe"
+      lore: "Items mined are transported into your inventory"
+      enchantments:
+        - name: "unbreaking"
+          level: 5
+        - name: "efficiency"
+          level: 6
+        - name: "mending"
+          level: 1
+        - name: "fortune"
+          level: 1
+Evolution:
+  amount: 1
+  commands:
+    - "say {player} has opened an Legendary Crate"
+  floating-text: "Evolution Crate"
+  drops:
+    - id: 748
+      meta: 0
+      amount: 1
+      chance: 1
+      name: "§l§1Apocalyps Helmet"
+      lore: "Items mined are transported into your inventory"
+      enchantments:
+        - name: "unbreaking"
+          level: 4
+        - name : "respiration"
+          level: 2
+        - name: "aqua_affinity"
+          level: 1
+        - name: "thorns"
+          level: 2
+        - name: "protection"
+          level: 4
+        - name: "blast_protection"
+          level: 4
+        - name: "fire_protection"
+          level: 4
+        - name: "projectile_protection"
+          level: 4
+    - id: 749
+      meta: 0
+      amount: 1
+      chance: 1
+      name: "§l§1Apocalyps Chestplate"
+      lore: "Items mined are transported into your inventory"
+      enchantments:
+        - name: "unbreaking"
+          level: 4
+        - name: "protection"
+          level: 4
+        - name: "blast_protection"
+          level: 4
+        - name: "fire_protection"
+          level: 4
+        - name: "projectile_protection"
+          level: 4
+        - name: "thorns"
+          level: 2
+    - id: 750
+      meta: 0
+      amount: 1
+      chance: 1
+      name: "§l§1Apocalyps Leggings"
+      lore: "Items mined are transported into your inventory"
+      enchantments:
+        - name: "unbreaking"
+          level: 4
+        - name: "protection"
+          level: 4
+        - name: "blast_protection"
+          level: 4
+        - name: "fire_protection"
+          level: 4
+        - name: "projectile_protection"
+          level: 4
+        - name: "thorns"
+          level: 2
+        - name: "swift_sneak"
+          level: 2
+    - id: 751
+      meta: 0
+      amount: 1
+      chance: 1
+      name: "§l§1Apocalyps Boots"
+      lore: "Items mined are transported into your inventory"
+      enchantments:
+        - name: "unbreaking"
+          level: 4
+        - name: "protection"
+          level: 4
+        - name: "blast_protection"
+          level: 4
+        - name: "fire_protection"
+          level: 4
+        - name: "projectile_protection"
+          level: 4
+        - name: "thorns"
+          level: 2
+        - name: "feather_falling"
+          level: 3
+        - name: "depth_strider"
+          level: 2
+        - name: "soul_speed"
+          level: 2
+    - id: 743
+      meta: 0
+      amount: 1
+      chance: 1
+      name: "§l§6Mythical Sword"
+      lore: "Items mined are transported into your inventory"
+      enchantments:
+        - name: "unbreaking"
+          level: 4
+        - name: "sharpness"
+          level: 5
+        - name: "fire_aspect"
+          level: 1
+        - name: "knockback"
+          level: 2
+        - name: "looting"
+          level: 3
+        - name: "bane_of_arthropods"
+          level: 5
+    - id: 744
+      meta: 0
+      amount: 1
+      chance: 2
+      name: "§l§6Mythical Shovels"
+      lore: "Items mined are transported into your inventory"
+      enchantments:
+        - name: "unbreaking"
+          level: 4
+        - name:  "efficiency"
+          level: 5
+        - name: "silk_touch"
+          level: 1
+    - id: 746
+      meta: 0
+      amount: 1
+      chance: 1
+      name: "§l§6Mythical Axe"
+      lore: "Items mined are transported into your inventory"
+      enchantments:
+        - name: "unbreaking"
+          level: 4
+        - name:  "efficiency"
+          level: 5
+        - name: "silk_touch"
+          level: 1
+        - name: "smite"
+          level: 5
+    - id: 745
+      meta: 0
+      amount: 1
+      chance: 1
+      name: "§l§6Mythical Pickaxe §eFT"
+      lore: "Items mined are transported into your inventory"
+      enchantments:
+        - name: "unbreaking"
+          level: 4
+        - name:  "efficiency"
+          level: 5
+        - name: "fortune"
+          level: 3
+    - id: 745
+      meta: 0
+      amount: 1
+      chance: 1
+      name: "§l§6Mythical Pickaxe §eST"
+      lore: "Items mined are transported into your inventory"
+      enchantments:
+        - name: "unbreaking"
+          level: 4
+        - name: "efficiency"
+          level: 5
+        - name: "silk_touch"
+          level: 1
+    - id: 747
+      meta: 0
+      amount: 1
+      chance: 2
+      name: "§l§6Mythical Hoe"
+      lore: "Items mined are transported into your inventory"
+      enchantments:
+        - name: "unbreaking"
+          level: 4
+        - name: "efficiency"
+          level: 5
+        - name: "fortune"
+          level: 3
+Special:
+  amount: 1
+  commands:
+    - "say {player} has opened an Special Crate"
+  floating-text: "Special Crate"
+  drops:
+    - id: 310
+      meta: 0
+      amount: 1
+      chance: 1
+      namel: "§l§dVicious Helmet"
+      lore: "Items mined are transported into your inventory"
+      enchantments:
+        - name: "unbreaking"
+          level: 3
+        - name : "respiration"
+          level: 2
+        - name: "aqua_affinity"
+          level: 1
+        - name: "thorns"
+          level: 2
+        - name: "protection"
+          level: 3
+        - name: "blast_protection"
+          level: 3
+        - name: "fire_protection"
+          level: 3
+        - name: "projectile_protection"
+          level: 3
+    - id: 311
+      meta: 0
+      amount: 1
+      chance: 1
+      name: "§l§dVicious Chestplate"
+      lore: "Items mined are transported into your inventory"
+      enchantments:
+        - name: "unbreaking"
+          level: 3
+        - name: "protection"
+          level: 3
+        - name: "blast_protection"
+          level: 3
+        - name: "fire_protection"
+          level: 3
+        - name: "projectile_protection"
+          level: 3
+        - name: "thorns"
+          level: 2
+    - id: 312
+      meta: 0
+      amount: 1
+      chance: 1
+      name: "§l§dVicious Leggings"
+      lore: "Items mined are transported into your inventory"
+      enchantments:
+        - name: "unbreaking"
+          level: 3
+        - name: "protection"
+          level: 3
+        - name: "blast_protection"
+          level: 3
+        - name: "fire_protection"
+          level: 3
+        - name: "projectile_protection"
+          level: 3
+        - name: "thorns"
+          level: 2
+        - name: "swift_sneak"
+          level: 2
+    - id: 313
+      meta: 0
+      amount: 1
+      chance: 1
+      name: "§l§dVicious Boots"
+      lore: "Items mined are transported into your inventory"
+      enchantments:
+        - name: "unbreaking"
+          level: 3
+        - name: "protection"
+          level: 3
+        - name: "blast_protection"
+          level: 3
+        - name: "fire_protection"
+          level: 3
+        - name: "projectile_protection"
+          level: 3
+        - name: "thorns"
+          level: 2
+        - name: "feather_falling"
+          level: 3
+        - name: "depth_strider"
+          level: 2
+        - name: "soul_speed"
+          level: 2
+    - id: 276
+      meta: 0
+      amount: 1
+      chance: 1
+      name: "§l§dVicious Sword"
+      lore: "Items mined are transported into your inventory"
+      enchantments:
+        - name: "unbreaking"
+          level: 3
+        - name: "sharpness"
+          level: 4
+        - name: "fire_aspect"
+          level: 1
+        - name: "knockback"
+          level: 2
+        - name: "looting"
+          level: 3
+        - name: "bane_of_arthropods"
+          level: 4
+    - id: 277
+      meta: 0
+      amount: 1
+      chance: 2
+      name: "§l§dVicious Shovels"
+      lore: "Items mined are transported into your inventory"
+      enchantments:
+        - name: "unbreaking"
+          level: 3
+        - name: "efficiency"
+          level: 4
+        - name: "silk_touch"
+          level: 1
+    - id: 278
+      meta: 0
+      amount: 1
+      chance: 1
+      name: "§l§dVicious Pickaxe §eFT"
+      lore: "Items mined are transported into your inventory"
+      enchantments:
+        - name: "unbreaking"
+          level: 3
+        - name: "efficiency"
+          level: 4
+        - name: "fortune"
+          level: 2
+    - id: 278
+      meta: 0
+      amount: 1
+      chance: 1
+      name: "§l§dVicious Pickaxe §eST"
+      lore: "Items mined are transported into your inventory"
+      enchantments:
+        - name: "unbreaking"
+          level: 3
+        - name: "efficiency"
+          level: 4
+        - name: "silk_touch"
+          level: 1
+    - id: 279
+      meta: 0
+      amount: 1
+      chance: 1
+      name: "§l§dVicious Axe"
+      lore: "Items mined are transported into your inventory"
+      enchantments:
+        - name: "unbreaking"
+          level: 3
+        - name:  "efficiency"
+          level: 4
+        - name: "silk_touch"
+          level: 1
+        - name: "smite"
+          level: 4
+    - id: 293
+      meta: 0
+      amount: 1
+      chance: 2
+      name: "§l§dVicious Hoe"
+      lore: "Items mined are transported into your inventory"
+      enchantments:
+        - name: "unbreaking"
+          level: 3
+        - name: "efficiency"
+          level: 4
+        - name: "fortune"
+          level: 2
+Basic:
+  amount: 1
+  commands:
+    - "say {player} has opened an Special Crate"
+  floating-text: "Basic Crate"
+  drops:
+    - id: 310
+      meta: 0
+      amount: 1
+      chance: 1
+      namel: "§l§3Miracle Helmet"
+      lore: "Items mined are transported into your inventory"
+      enchantments:
+        - name: "unbreaking"
+          level: 2
+        - name : "respiration"
+          level: 1
+        - name: "aqua_affinity"
+          level: 1
+        - name: "thorns"
+          level: 1
+        - name: "protection"
+          level: 2
+        - name: "blast_protection"
+          level: 2
+        - name: "fire_protection"
+          level: 2
+        - name: "projectile_protection"
+          level: 2
+    - id: 311
+      meta: 0
+      amount: 1
+      chance: 1
+      name: "§l§3Miracle Chestplate"
+      lore: "Items mined are transported into your inventory"
+      enchantments:
+        - name: "unbreaking"
+          level: 2
+        - name: "protection"
+          level: 2
+        - name: "blast_protection"
+          level: 2
+        - name: "fire_protection"
+          level: 2
+        - name: "projectile_protection"
+          level: 2
+        - name: "thorns"
+          level: 1
+    - id: 312
+      meta: 0
+      amount: 1
+      chance: 1
+      name: "§l§3Miracle Leggings"
+      lore: "Items mined are transported into your inventory"
+      enchantments:
+        - name: "unbreaking"
+          level: 2
+        - name: "protection"
+          level: 2
+        - name: "blast_protection"
+          level: 2
+        - name: "fire_protection"
+          level: 2
+        - name: "projectile_protection"
+          level: 2
+        - name: "thorns"
+          level: 1
+        - name: "swift_sneak"
+          level: 2
+    - id: 313
+      meta: 0
+      amount: 1
+      chance: 1
+      name: "§l§3Miracle Boots"
+      lore: "Items mined are transported into your inventory"
+      enchantments:
+        - name: "unbreaking"
+          level: 2
+        - name: "protection"
+          level: 2
+        - name: "blast_protection"
+          level: 2
+        - name: "fire_protection"
+          level: 2
+        - name: "projectile_protection"
+          level: 2
+        - name: "thorns"
+          level: 1
+        - name: "feather_falling"
+          level: 2
+        - name: "depth_strider"
+          level: 1
+        - name: "soul_speed"
+          level: 1
+    - id: 276
+      meta: 0
+      amount: 1
+      chance: 1
+      name: "§l§3Miracle Sword"
+      lore: "Items mined are transported into your inventory"
+      enchantments:
+        - name: "unbreaking"
+          level: 2
+        - name: "sharpness"
+          level: 3
+        - name: "fire_aspect"
           level: 1
         - name: "knockback"
           level: 1
-    - id: 49
+        - name: "looting"
+          level: 2
+        - name: "bane_of_arthropods"
+          level: 3
+    - id: 277
       meta: 0
-      amount: 32
-      chance: 15
-      name: "Money 1000"
-      commands:
-        - "givemoney {player} 1000"
-    - id: 466
+      amount: 1
+      chance: 2
+      name: "§l§3Miracle Shovels"
+      lore: "Items mined are transported into your inventory"
+      enchantments:
+        - name: "unbreaking"
+          level: 2
+        - name: "efficiency"
+          level: 3
+        - name: "silk_touch"
+          level: 1
+    - id: 278
       meta: 0
-      amount: 16
-      chance: 70
-    - id: 7
+      amount: 1
+      chance: 1
+      name: "§l§3Miracle Pickaxe §eFT"
+      lore: "Items mined are transported into your inventory"
+      enchantments:
+        - name: "unbreaking"
+          level: 2
+        - name: "efficiency"
+          level: 3
+        - name: "fortune"
+          level: 1
+    - id: 278
       meta: 0
-      amount: 5
-      chance: 5
-  amount: 1
-  commands: ["say {PLAYER} has opened an Legendary Crate"]
-  floating-text: "Legendary Crate"
+      amount: 1
+      chance: 1
+      name: "§l§3Miracle Pickaxe §eST"
+      lore: "Items mined are transported into your inventory"
+      enchantments:
+        - name: "unbreaking"
+          level: 2
+        - name: "efficiency"
+          level: 3
+        - name: "silk_touch"
+          level: 1
+    - id: 279
+      meta: 0
+      amount: 1
+      chance: 1
+      name: "§l§3Miracle Axe"
+      lore: "Items mined are transported into your inventory"
+      enchantments:
+        - name: "unbreaking"
+          level: 2
+        - name:  "efficiency"
+          level: 3
+        - name: "silk_touch"
+          level: 1
+        - name: "smite"
+          level: 3
+    - id: 293
+      meta: 0
+      amount: 1
+      chance: 2
+      name: "§l§3Miracle Hoe"
+      lore: "Items mined are transported into your inventory"
+      enchantments:
+        - name: "unbreaking"
+          level: 2
+        - name: "efficiency"
+          level: 3
+        - name: "fortune"
+          level: 1

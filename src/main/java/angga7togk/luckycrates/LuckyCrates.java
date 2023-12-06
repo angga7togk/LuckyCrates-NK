@@ -4,10 +4,9 @@ import angga7togk.luckycrates.command.GiveKey;
 import angga7togk.luckycrates.command.KeyAll;
 import angga7togk.luckycrates.command.SetCrates;
 import angga7togk.luckycrates.listener.Listeners;
-import angga7togk.luckycrates.task.FloatingTask;
+import angga7togk.luckycrates.task.FloatingTextTask;
 import cn.nukkit.Player;
 import cn.nukkit.item.Item;
-import cn.nukkit.item.enchantment.Enchantment;
 import cn.nukkit.plugin.Plugin;
 import cn.nukkit.plugin.PluginBase;
 import cn.nukkit.utils.Config;
@@ -15,16 +14,14 @@ import cn.nukkit.utils.ConfigSection;
 import cn.nukkit.utils.TextFormat;
 import lombok.Getter;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class LuckyCrates extends PluginBase {
 
     @Getter
     private static LuckyCrates instance;
     public static Config crates, pos;
+    public static int offsetIdEntity = 1;
     public static Map<Player, String> setMode = new HashMap<>();
     public static String prefix;
 
@@ -41,6 +38,12 @@ public class LuckyCrates extends PluginBase {
         saveDefaultConfig();
         crates = new Config(this.getDataFolder() + "/crates.yml", Config.YAML);
         pos = new Config(this.getDataFolder() + "/position.yml", Config.YAML);
+
+        if (pos.exists("crates", true)){
+            pos.set("crates", new HashMap<>());
+            pos.save();
+        }
+
         prefix = getConfig().getString("prefix");
 
         this.checkDepend();
@@ -50,7 +53,8 @@ public class LuckyCrates extends PluginBase {
         this.getServer().getCommandMap().register("LuckyCrates", new GiveKey());
         this.getServer().getCommandMap().register("LuckyCrates", new KeyAll());
         this.getServer().getCommandMap().register("LuckyCrates", new SetCrates());
-        this.getServer().getScheduler().scheduleRepeatingTask(this, new FloatingTask(), 20 * 5, true);
+
+        this.getServer().getScheduler().scheduleRepeatingTask(this, new FloatingTextTask(), 20 * 5);
     }
 
     private void checkDepend(){
@@ -96,7 +100,6 @@ public class LuckyCrates extends PluginBase {
             }
         }catch (RuntimeException e){
             this.getServer().getLogger().error("LuckyCrates Error: " + e.getMessage());
-            this.getServer().shutdown();
         }
     }
     
