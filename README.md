@@ -2,6 +2,7 @@
 LuckyCrates-PNX is an exciting and customizable plugin for Nukkit, designed to bring a new level of fun and rewards to your server through engaging crate systems. Whether you want to offer common items, custom creations, enchanted gear, or execute commands upon crate opening, LuckyCrates-PNX has got you covered.
 
 This plugin is inspired by [PiggyCrates](https://github.com/DaPigGuy/PiggyCrates).
+
 This plugin is for [PowerNukkitX](https://github.com/PowerNukkitX/PowerNukkitX).
 
 ## Preview
