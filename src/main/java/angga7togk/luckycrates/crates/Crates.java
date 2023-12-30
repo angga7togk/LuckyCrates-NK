@@ -17,7 +17,7 @@ public class Crates extends Keys {
         super();
     }
 
-    public boolean isCrates(Block block) {
+    public  boolean isCrates(Block block) {
         Location location = block.getLocation();
         double x = location.getX() + offsetX;
         double y = location.getY() + offsetY;

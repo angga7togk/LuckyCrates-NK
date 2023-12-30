@@ -18,7 +18,7 @@ This plugin is for [PowerNukkitX](https://github.com/PowerNukkitX/PowerNukkitX).
 ## Getting Started
 
 ### Installation
-1. Download the latest release from [LuckyCrates](https://cloudburstmc.org/resources/luckycrates.952/).
+1. Download the latest release from [LuckyCrates](https://github.com/angga7togk/LuckyCrates-PNX/releases).
 2. Download the depend plugin [FakeInventories v1.1.5](https://github.com/IWareQ/FakeInventories/releases/tag/v1.1.5).
 3. Place the JAR file into the `plugins` folder of your Nukkit server.
 4. Start or reload your server.
@@ -66,6 +66,13 @@ Common:
       commands:
         - "givemoney {player} 1000"
         - "give {player} bread 1"
+    # Example of using Broadcast
+    - id: 49
+      meta: 0
+      amount: 32
+      chance: 15
+      name: "Money 1000"
+      broadcast: "{player} gets reward {reward}"
   # amount, is the number of keys needed when opening crates
   amount: 1
   # Commands are commands that are executed when the player opens the crate

@@ -12,8 +12,8 @@ crates:
   # roulette will be useful if you use the roulette type
   roulette:
     # speed is the rotation speed
-    # 1 second = 20
-    speed: 5
+    # 1 second = 1000
+    speed: 250
     # round is the number of rounds when the crate is open
     round: 25
 

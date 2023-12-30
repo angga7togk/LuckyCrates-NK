@@ -11,6 +11,7 @@ import cn.nukkit.plugin.Plugin;
 import cn.nukkit.plugin.PluginBase;
 import cn.nukkit.utils.Config;
 import cn.nukkit.utils.ConfigSection;
+import cn.nukkit.utils.MainLogger;
 import cn.nukkit.utils.TextFormat;
 import lombok.Getter;
 
@@ -39,7 +40,7 @@ public class LuckyCrates extends PluginBase {
         crates = new Config(this.getDataFolder() + "/crates.yml", Config.YAML);
         pos = new Config(this.getDataFolder() + "/position.yml", Config.YAML);
 
-        if (pos.exists("crates", true)){
+        if (!pos.exists("crates", true)){
             pos.set("crates", new HashMap<>());
             pos.save();
         }
@@ -50,11 +51,14 @@ public class LuckyCrates extends PluginBase {
         this.checkCratesConfig();
 
         this.getServer().getPluginManager().registerEvents(new Listeners(), this);
-        this.getServer().getCommandMap().register("LuckyCrates", new GiveKey());
-        this.getServer().getCommandMap().register("LuckyCrates", new KeyAll());
-        this.getServer().getCommandMap().register("LuckyCrates", new SetCrates());
 
-        this.getServer().getScheduler().scheduleRepeatingTask(this, new FloatingTextTask(), 20 * 5);
+        this.getServer().getCommandMap().registerAll(getName(), List.of(
+            new GiveKey(),
+            new KeyAll(),
+            new SetCrates()
+        ));
+
+        this.getServer().getScheduler().scheduleRepeatingTask(this, new FloatingTextTask(), 20 * 5, true);
     }
 
     private void checkDepend(){
@@ -62,11 +66,11 @@ public class LuckyCrates extends PluginBase {
         if (depend != null) {
             String version = depend.getDescription().getVersion();
             if(!version.equalsIgnoreCase("1.1.5")){
-                this.getServer().getLogger().warning(prefix + TextFormat.RED + "please download the depend first, with version 1.1.5 https://github.com/IWareQ/FakeInventories/releases/tag/v1.1.5");
+                MainLogger.getLogger().warning(prefix + TextFormat.RED + "please download the depend first, with version 1.1.5 https://github.com/IWareQ/FakeInventories/releases/tag/v1.1.5");
                 this.getServer().getPluginManager().disablePlugin(this);
             }
         } else {
-            this.getServer().getLogger().warning(prefix + TextFormat.RED + "please download the depend first https://github.com/IWareQ/FakeInventories/releases/tag/v1.1.5");
+            MainLogger.getLogger().warning(prefix + TextFormat.RED + "please download the depend first https://github.com/IWareQ/FakeInventories/releases/tag/v1.1.5");
             this.getServer().getPluginManager().disablePlugin(this);
         }
     }
@@ -99,7 +103,7 @@ public class LuckyCrates extends PluginBase {
                 }
             }
         }catch (RuntimeException e){
-            this.getServer().getLogger().error("LuckyCrates Error: " + e.getMessage());
+            MainLogger.getLogger().error("LuckyCrates Error: " + e.getMessage());
         }
     }
     

@@ -1,6 +1,7 @@
 package angga7togk.luckycrates.task;
 
 import angga7togk.luckycrates.LuckyCrates;
+import angga7togk.luckycrates.event.PlayerOpenCrateEvent;
 import cn.nukkit.Player;
 import cn.nukkit.Server;
 import cn.nukkit.item.Item;
@@ -15,7 +16,9 @@ public class InstantTask extends Task {
     @Getter
     private final Player player;
     private final List<Map<String, Object>> safeDrops = new ArrayList<>();
+    private final String crateName;
     public InstantTask(Player player, String crateName){
+        this.crateName = crateName;
         this.player = player;
         ConfigSection crateSect = LuckyCrates.crates.getSection(crateName);
         List<Map<String, Object>> drops = crateSect.getList("drops");
@@ -39,9 +42,10 @@ public class InstantTask extends Task {
             player.getInventory().addItem(item);
             if(drop.containsKey("commands")){
                 for (String command : (List<String>) drop.get("commands")){
-                    Server.getInstance().dispatchCommand(Server.getInstance().getConsoleSender(), command.replace("{player}", this.getPlayer().getName()));
+                    Server.getInstance().executeCommand(Server.getInstance().getConsoleSender(), command.replace("{player}", this.getPlayer().getName()));
                 }
             }
+            Server.getInstance().getPluginManager().callEvent(new PlayerOpenCrateEvent(player, item, crateName));
         }
     }
 
