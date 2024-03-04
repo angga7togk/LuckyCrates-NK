@@ -2,17 +2,6 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$/.." vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/../AutoClearLag" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/../AutoPickup-NK" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/../CoinsAPI-NK" vcs="Git" />
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/../NukkitTest" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/../OneBlock-NK" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/../ScoreboardAPI" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/../ShopGUI" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/../SimpleScoreboards" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/../SkinChanger" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/../Vanish-NK" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/../WorldEdit" vcs="Git" />
   </component>
 </project>

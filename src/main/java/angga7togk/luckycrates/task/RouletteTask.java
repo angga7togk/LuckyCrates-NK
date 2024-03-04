@@ -219,7 +219,7 @@ public class RouletteTask extends AsyncTask {
     private List<String> getCommandsFromItem(Item item) {
         CompoundTag namedTag = (item.hasCompoundTag()) ? item.getNamedTag() : new CompoundTag();
         if (namedTag.contains("commands")) {
-            List<String> commands = List.of(namedTag.getString("commands").split(","));
+            List<String> commands = Arrays.asList(namedTag.getString("commands").split(","));
 
             namedTag.remove("commands");
             item.setNamedTag(namedTag);
@@ -236,7 +236,7 @@ public class RouletteTask extends AsyncTask {
             List<String> commands = getCommandsFromItem(item);
             if(commands != null){
                 for (String command : commands){
-                    Server.getInstance().executeCommand(Server.getInstance().getConsoleSender(), command.replace("{player}", this.getPlayer().getName()));
+                    Server.getInstance().dispatchCommand(Server.getInstance().getConsoleSender(), command.replace("{player}", this.getPlayer().getName()));
                 }
             }
             String broadcast = getBroadcastFromItem(item);

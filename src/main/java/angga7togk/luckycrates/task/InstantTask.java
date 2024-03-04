@@ -42,7 +42,7 @@ public class InstantTask extends Task {
             player.getInventory().addItem(item);
             if(drop.containsKey("commands")){
                 for (String command : (List<String>) drop.get("commands")){
-                    Server.getInstance().executeCommand(Server.getInstance().getConsoleSender(), command.replace("{player}", this.getPlayer().getName()));
+                    Server.getInstance().dispatchCommand(Server.getInstance().getConsoleSender(), command.replace("{player}", this.getPlayer().getName()));
                 }
             }
             Server.getInstance().getPluginManager().callEvent(new PlayerOpenCrateEvent(player, item, crateName));

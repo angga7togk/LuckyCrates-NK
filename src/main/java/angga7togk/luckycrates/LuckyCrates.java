@@ -52,10 +52,10 @@ public class LuckyCrates extends PluginBase {
 
         this.getServer().getPluginManager().registerEvents(new Listeners(), this);
 
-        this.getServer().getCommandMap().registerAll(getName(), List.of(
-            new GiveKey(),
-            new KeyAll(),
-            new SetCrates()
+        this.getServer().getCommandMap().registerAll(getName(), Arrays.asList(
+                new GiveKey(),
+                new KeyAll(),
+                new SetCrates()
         ));
 
         this.getServer().getScheduler().scheduleRepeatingTask(this, new FloatingTextTask(), 20 * 5, true);
@@ -65,12 +65,12 @@ public class LuckyCrates extends PluginBase {
         Plugin depend = this.getServer().getPluginManager().getPlugin("FakeInventories");
         if (depend != null) {
             String version = depend.getDescription().getVersion();
-            if(!version.equalsIgnoreCase("1.1.5")){
-                MainLogger.getLogger().warning(prefix + TextFormat.RED + "please download the depend first, with version 1.1.5 https://github.com/IWareQ/FakeInventories/releases/tag/v1.1.5");
+            if(!version.equalsIgnoreCase("1.1.8")){
+                MainLogger.getLogger().warning(prefix + TextFormat.RED + "please download the depend first, with version 1.1.8 https://github.com/IWareQ/FakeInventories/releases/tag/v1.1.8");
                 this.getServer().getPluginManager().disablePlugin(this);
             }
         } else {
-            MainLogger.getLogger().warning(prefix + TextFormat.RED + "please download the depend first https://github.com/IWareQ/FakeInventories/releases/tag/v1.1.5");
+            MainLogger.getLogger().warning(prefix + TextFormat.RED + "please download the depend first https://github.com/IWareQ/FakeInventories/releases/tag/v1.1.8");
             this.getServer().getPluginManager().disablePlugin(this);
         }
     }

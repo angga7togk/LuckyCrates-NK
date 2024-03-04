@@ -93,7 +93,7 @@ public class ChestMenu {
                 if (myKey >= needKey) {
                     if (crateSect.exists("commands", true)) {
                         for (String command : crateSect.getStringList("commands")) {
-                            Server.getInstance().executeCommand(Server.getInstance().getConsoleSender(), command.replace("{player}", target.getName()));
+                            Server.getInstance().dispatchCommand(Server.getInstance().getConsoleSender(), command.replace("{player}", target.getName()));
                         }
                     }
                     reduceKey(target, crateName, needKey);

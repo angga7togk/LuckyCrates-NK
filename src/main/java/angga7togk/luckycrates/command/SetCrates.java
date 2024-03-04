@@ -17,7 +17,8 @@ public class SetCrates extends CratesCommand {
     @Override
     public void execute(CommandSender sender, Map<String, String> lang, String[] args) {
         if(this.testPermission(sender)){
-            if(sender instanceof Player player){
+            if(sender instanceof Player){
+                Player player = (Player) sender;
                 if(args.length < 1){
                     player.sendMessage(LuckyCrates.prefix + getUsage());
                     return;
