@@ -1,12 +1,12 @@
-# <img src='https://github.com/angga7togk/LuckyCrates-PNX/blob/8169905ea0640a2df6d8c0cc6e89e829375e1c1d/treasure-chest.png' width='50'> LuckyCrates-PNX
-LuckyCrates-PNX is an exciting and customizable plugin for Nukkit, designed to bring a new level of fun and rewards to your server through engaging crate systems. Whether you want to offer common items, custom creations, enchanted gear, or execute commands upon crate opening, LuckyCrates-PNX has got you covered.
+# <img src='https://github.com/angga7togk/LuckyCrates-NK/blob/8169905ea0640a2df6d8c0cc6e89e829375e1c1d/treasure-chest.png' width='50'> LuckyCrates-NK
+LuckyCrates-NK is an exciting and customizable plugin for Nukkit, designed to bring a new level of fun and rewards to your server through engaging crate systems. Whether you want to offer common items, custom creations, enchanted gear, or execute commands upon crate opening, LuckyCrates-NK has got you covered.
 
 This plugin is inspired by [PiggyCrates](https://github.com/DaPigGuy/PiggyCrates).
 
-This plugin is for [PowerNukkitX](https://github.com/PowerNukkitX/PowerNukkitX).
+This plugin is for Nukkit.
 
 ## Preview
-<img src='https://github.com/angga7togk/LuckyCrates-PNX/blob/2cdbc2c2030429f84a859b75069ef15f40ecd5fa/Crates.jpg' width='250'> <img src='https://github.com/angga7togk/LuckyCrates-PNX/blob/2cdbc2c2030429f84a859b75069ef15f40ecd5fa/PreviewCrate.jpg' width='150'> <img src='https://github.com/angga7togk/LuckyCrates-PNX/blob/2cdbc2c2030429f84a859b75069ef15f40ecd5fa/OpenCrate.jpg' width='150'>
+<img src='https://github.com/angga7togk/LuckyCrates-NK/blob/2cdbc2c2030429f84a859b75069ef15f40ecd5fa/Crates.jpg' width='250'> <img src='https://github.com/angga7togk/LuckyCrates-NK/blob/2cdbc2c2030429f84a859b75069ef15f40ecd5fa/PreviewCrate.jpg' width='150'> <img src='https://github.com/angga7togk/LuckyCrates-NK/blob/2cdbc2c2030429f84a859b75069ef15f40ecd5fa/OpenCrate.jpg' width='150'>
 
 ## Features
 
@@ -18,7 +18,7 @@ This plugin is for [PowerNukkitX](https://github.com/PowerNukkitX/PowerNukkitX).
 ## Getting Started
 
 ### Installation
-1. Download the latest release from [LuckyCrates](https://github.com/angga7togk/LuckyCrates-PNX/releases).
+1. Download the latest release from [LuckyCrates](https://github.com/angga7togk/LuckyCrates-NK/releases).
 2. Download the depend plugin [FakeInventories v1.1.5](https://github.com/IWareQ/FakeInventories/releases/tag/v1.1.5).
 3. Place the JAR file into the `plugins` folder of your Nukkit server.
 4. Start or reload your server.
@@ -95,11 +95,11 @@ Common:
 
 ### Multilingual Support
 
-LuckyCrates-PNX seamlessly supports both English and Indonesian (Bahasa Indonesia) languages, automatically detecting the player's language preference.
+LuckyCrates-NK seamlessly supports both English and Indonesian (Bahasa Indonesia) languages, automatically detecting the player's language preference.
 
 ### Crate Types
 
-LuckyCrates-PNX offers two crate types:
+LuckyCrates-NK offers two crate types:
 - **Instant Crates:** Immediate rewards upon opening.
 - **Roulette Crates:** Players spin the roulette for a chance to win different items.
 
@@ -111,6 +111,6 @@ Icon By [Flaticon](https://www.flaticon.com)
 
 This plugin is tested and compatible with [FakeInventories v1.1.5](https://github.com/IWareQ/FakeInventories/releases/tag/v1.1.5).
 
-Feel free to contribute, report issues, or suggest improvements on [GitHub](https://github.com/angga7togk/LuckyCrates-PNX/issues).
+Feel free to contribute, report issues, or suggest improvements on [GitHub](https://github.com/angga7togk/LuckyCrates-NK/issues).
 
-Enjoy the thrill of LuckyCrates-PNX on your Nukkit server!
+Enjoy the thrill of LuckyCrates-NK on your Nukkit server!
