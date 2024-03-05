@@ -2,9 +2,7 @@ name: ${project.name}
 main: angga7togk.luckycrates.LuckyCrates
 version: ${project.version}
 api: 1.0.0
-authors:
-  - Angga7Togk
-  - AraaCuteUwU
+author: Angga7Togk
 depend:
   - FakeInventories
 
