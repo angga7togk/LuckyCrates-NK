@@ -3,12 +3,14 @@ package angga7togk.luckycrates.listener;
 import angga7togk.luckycrates.LuckyCrates;
 import angga7togk.luckycrates.crates.Crates;
 import angga7togk.luckycrates.language.Languages;
+import angga7togk.luckycrates.utils.FloatingUtils;
 import cn.nukkit.Player;
 import cn.nukkit.block.Block;
 import cn.nukkit.event.EventHandler;
 import cn.nukkit.event.Listener;
 import cn.nukkit.event.block.BlockBreakEvent;
 import cn.nukkit.event.player.PlayerInteractEvent;
+import cn.nukkit.event.player.PlayerJoinEvent;
 import cn.nukkit.event.player.PlayerQuitEvent;
 
 import java.util.Map;
@@ -39,9 +41,9 @@ public class Listeners implements Listener {
         }else{
             if(player.hasPermission("break.crates")){
                 if(crates.isCrates(block)){
-                    crates.breakCrates(block);
                     player.sendMessage(LuckyCrates.prefix + lang.get("break-crate")
                             .replace("{crate}", crates.getCrateName(block)));
+                    crates.breakCrates(block);
                 }
             }
         }

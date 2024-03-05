@@ -3,18 +3,23 @@ package angga7togk.luckycrates;
 import angga7togk.luckycrates.command.GiveKey;
 import angga7togk.luckycrates.command.KeyAll;
 import angga7togk.luckycrates.command.SetCrates;
+import angga7togk.luckycrates.entity.LuckyCratesEntity;
 import angga7togk.luckycrates.listener.Listeners;
-import angga7togk.luckycrates.task.FloatingTextTask;
+import angga7togk.luckycrates.utils.FloatingUtils;
 import cn.nukkit.Player;
+import cn.nukkit.Server;
+import cn.nukkit.entity.Entity;
 import cn.nukkit.item.Item;
+import cn.nukkit.level.Level;
+import cn.nukkit.level.Position;
 import cn.nukkit.plugin.Plugin;
 import cn.nukkit.plugin.PluginBase;
 import cn.nukkit.utils.Config;
 import cn.nukkit.utils.ConfigSection;
-import cn.nukkit.utils.MainLogger;
 import cn.nukkit.utils.TextFormat;
 import lombok.Getter;
 
+import javax.annotation.Nullable;
 import java.util.*;
 
 public class LuckyCrates extends PluginBase {
@@ -22,9 +27,9 @@ public class LuckyCrates extends PluginBase {
     @Getter
     private static LuckyCrates instance;
     public static Config crates, pos;
-    public static int offsetIdEntity = 1;
     public static Map<Player, String> setMode = new HashMap<>();
     public static String prefix;
+    public static final Map<String, Entity> particles = new HashMap<>();
 
     @Override
     public void onLoad() {
@@ -44,8 +49,8 @@ public class LuckyCrates extends PluginBase {
             pos.set("crates", new HashMap<>());
             pos.save();
         }
-
         prefix = getConfig().getString("prefix");
+
 
         this.checkDepend();
         this.checkCratesConfig();
@@ -58,7 +63,22 @@ public class LuckyCrates extends PluginBase {
                 new SetCrates()
         ));
 
-        this.getServer().getScheduler().scheduleRepeatingTask(this, new FloatingTextTask(), 20 * 5, true);
+        // Register Entity LuckyCrates
+        if(Entity.registerEntity("LuckyCrates", LuckyCratesEntity.class)){
+            this.getLogger().info(prefix + "Entity LuckyCrates Registered.");
+            spawnEntityAllFloatingText();
+        }else{
+            this.getLogger().warning(prefix + "Entity LuckyCrates not Register.");
+        }
+    }
+
+    @Override
+    public void onDisable() {
+        for (Level level : this.getServer().getLevels().values()) {
+            for (Entity entity : level.getEntities()) {
+                if (entity instanceof LuckyCratesEntity) entity.close();
+            }
+        }
     }
 
     private void checkDepend(){
@@ -66,11 +86,11 @@ public class LuckyCrates extends PluginBase {
         if (depend != null) {
             String version = depend.getDescription().getVersion();
             if(!version.equalsIgnoreCase("1.1.8")){
-                MainLogger.getLogger().warning(prefix + TextFormat.RED + "please download the depend first, with version 1.1.8 https://github.com/IWareQ/FakeInventories/releases/tag/v1.1.8");
+                this.getLogger().warning(prefix + TextFormat.RED + "please download the depend first, with version 1.1.8 https://github.com/IWareQ/FakeInventories/releases/tag/v1.1.8");
                 this.getServer().getPluginManager().disablePlugin(this);
             }
         } else {
-            MainLogger.getLogger().warning(prefix + TextFormat.RED + "please download the depend first https://github.com/IWareQ/FakeInventories/releases/tag/v1.1.8");
+            this.getLogger().warning(prefix + TextFormat.RED + "please download the depend first https://github.com/IWareQ/FakeInventories/releases/tag/v1.1.8");
             this.getServer().getPluginManager().disablePlugin(this);
         }
     }
@@ -79,9 +99,11 @@ public class LuckyCrates extends PluginBase {
         try {
             for (String crateName : crates.getKeys(false)){
                 ConfigSection crateSect = LuckyCrates.crates.getSection(crateName);
+
                 if(!crateSect.exists("drops", true)) throw new RuntimeException("crates.yml key " + crateName + ":drops: not found!");
                 if(!crateSect.exists("amount", true)) throw new RuntimeException("crates.yml key " + crateName + ":amount: not found!");
                 if(!crateSect.exists("floating-text", true)) throw new RuntimeException("crates.yml key " + crateName + ":floating-text: not found!");
+
                 List<Map<String, Object>> dropsList = crateSect.getList("drops");
                 for (Map<String, Object> drop : dropsList){
                     if(!drop.containsKey("id")) throw new RuntimeException("crates.yml key " + crateName + ":drops:id: not found!");
@@ -103,11 +125,12 @@ public class LuckyCrates extends PluginBase {
                 }
             }
         }catch (RuntimeException e){
-            MainLogger.getLogger().error("LuckyCrates Error: " + e.getMessage());
+            this.getLogger().error("LuckyCrates Error: " + e.getMessage());
+            this.getServer().getPluginManager().disablePlugin(this);
         }
     }
     
-    public static Integer getEnchantmentByName(String enchant){
+    public static @Nullable Integer getEnchantmentByName(String enchant){
         Map<String, Integer> enchantmentsMap = new HashMap<>();
         enchantmentsMap.put("protection", 0);
         enchantmentsMap.put("fire_protection", 1);
@@ -149,5 +172,22 @@ public class LuckyCrates extends PluginBase {
         enchantmentsMap.put("swift_sneak", 37);
         if(enchantmentsMap.containsKey(enchant)) return enchantmentsMap.get(enchant);
         return null;
+    }
+
+    private void spawnEntityAllFloatingText(){
+        for (String idEntity : pos.getSection("crates").getKeys(false)) {
+            String crateName = pos.getString("crates." + idEntity + ".crate");
+            double x = pos.getDouble("crates." + idEntity + ".pos.x");
+            double y = pos.getDouble("crates." + idEntity + ".pos.y");
+            double z = pos.getDouble("crates." + idEntity + ".pos.z");
+            String levelName = pos.getString("crates." + idEntity + ".pos.level");
+
+            Level level = Server.getInstance().getLevelByName(levelName);
+            if(level != null){
+                String displayName = crates.getString(crateName + ".floating-text");
+                FloatingUtils.createEntity(displayName, idEntity, new Position(x, y, z, level));
+                this.getLogger().info(prefix + "FloatingText " + crateName + TextFormat.RESET + " Loaded.");
+            }
+        }
     }
 }

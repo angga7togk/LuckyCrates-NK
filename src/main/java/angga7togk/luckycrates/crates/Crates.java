@@ -5,8 +5,11 @@ import angga7togk.luckycrates.menu.ChestMenu;
 import angga7togk.luckycrates.utils.FloatingUtils;
 import cn.nukkit.Player;
 import cn.nukkit.block.Block;
+import cn.nukkit.level.Level;
 import cn.nukkit.level.Location;
+import cn.nukkit.level.Position;
 
+import java.rmi.dgc.Lease;
 import java.util.*;
 
 public class Crates extends Keys {
@@ -24,11 +27,11 @@ public class Crates extends Keys {
         double z = location.getZ() + offsetZ;
         String level = location.getLevel().getName();
 
-        for (String crateName : LuckyCrates.pos.getSection("crates").getKeys(false)){
-            double posX = LuckyCrates.pos.getDouble("crates." + crateName + ".pos.x");
-            double posY = LuckyCrates.pos.getDouble("crates." + crateName + ".pos.y");
-            double posZ = LuckyCrates.pos.getDouble("crates." + crateName + ".pos.z");
-            String posLevel = LuckyCrates.pos.getString("crates." + crateName + ".pos.level");
+        for (String idEntity : LuckyCrates.pos.getSection("crates").getKeys(false)){
+            double posX = LuckyCrates.pos.getDouble("crates." + idEntity + ".pos.x");
+            double posY = LuckyCrates.pos.getDouble("crates." + idEntity + ".pos.y");
+            double posZ = LuckyCrates.pos.getDouble("crates." + idEntity + ".pos.z");
+            String posLevel = LuckyCrates.pos.getString("crates." + idEntity + ".pos.level");
 
             if (level.equalsIgnoreCase(posLevel) && Double.valueOf(x).equals(posX) && Double.valueOf(y).equals(posY
             ) && Double.valueOf(z).equals(posZ)) {
@@ -40,24 +43,21 @@ public class Crates extends Keys {
 
     public void previewCrates(Player player, Block block) {
         if (isCrates(block)) {
-            if (getCrateName(block) != null) {
+            String crateName = getCrateName(block);
+            if (crateName != null) {
                 ChestMenu menu = new ChestMenu();
-                menu.mainMenu(player, getCrateName(block));
+                menu.mainMenu(player, crateName);
             }
         }
     }
 
     public void breakCrates(Block block) {
         if (isCrates(block)) {
-            String crateName = getCrateName(block);
-            if (crateName != null){
-                String levelName = LuckyCrates.pos.getString("crates." + crateName + ".pos.level");
-                long id = LuckyCrates.pos.getLong("crates." + crateName + ".id");
-
-                FloatingUtils.removeEntity(id, levelName);
-                LuckyCrates.pos.remove(crateName);
+            String idEntity = getCrateIdEntity(block);
+            if (idEntity != null){
+                FloatingUtils.removeEntity(idEntity);
+                LuckyCrates.pos.getSection("crates").remove(idEntity);
                 LuckyCrates.pos.save();
-                LuckyCrates.pos.reload();
             }
         }
     }
@@ -70,15 +70,38 @@ public class Crates extends Keys {
             double z = location.getZ() + offsetZ;
             String level = location.getLevel().getName();
 
-            for (String crateName : LuckyCrates.pos.getSection("crates").getKeys(false)){
-                double posX = LuckyCrates.pos.getDouble("crates." + crateName + ".pos.x");
-                double posY = LuckyCrates.pos.getDouble("crates." + crateName + ".pos.y");
-                double posZ = LuckyCrates.pos.getDouble("crates." + crateName + ".pos.z");
-                String posLevel = LuckyCrates.pos.getString("crates." + crateName + ".pos.level");
+            for (String idEntity : LuckyCrates.pos.getSection("crates").getKeys(false)){
+                double posX = LuckyCrates.pos.getDouble("crates." + idEntity + ".pos.x");
+                double posY = LuckyCrates.pos.getDouble("crates." + idEntity + ".pos.y");
+                double posZ = LuckyCrates.pos.getDouble("crates." + idEntity + ".pos.z");
+                String posLevel = LuckyCrates.pos.getString("crates." + idEntity + ".pos.level");
 
                 if (level.equalsIgnoreCase(posLevel) && Double.valueOf(x).equals(posX) && Double.valueOf(y).equals(posY
                 ) && Double.valueOf(z).equals(posZ)) {
-                    return crateName;
+                    return LuckyCrates.pos.getString("crates." + idEntity + ".crate");
+                }
+            }
+        }
+        return null;
+    }
+
+    public String getCrateIdEntity(Block block) {
+        if (isCrates(block)){
+            Location location = block.getLocation();
+            double x = location.getX() + offsetX;
+            double y = location.getY() + offsetY;
+            double z = location.getZ() + offsetZ;
+            String level = location.getLevel().getName();
+
+            for (String idEntity : LuckyCrates.pos.getSection("crates").getKeys(false)){
+                double posX = LuckyCrates.pos.getDouble("crates." + idEntity + ".pos.x");
+                double posY = LuckyCrates.pos.getDouble("crates." + idEntity + ".pos.y");
+                double posZ = LuckyCrates.pos.getDouble("crates." + idEntity + ".pos.z");
+                String posLevel = LuckyCrates.pos.getString("crates." + idEntity + ".pos.level");
+
+                if (level.equalsIgnoreCase(posLevel) && Double.valueOf(x).equals(posX) && Double.valueOf(y).equals(posY
+                ) && Double.valueOf(z).equals(posZ)) {
+                    return idEntity;
                 }
             }
         }
@@ -92,23 +115,22 @@ public class Crates extends Keys {
                 double x = location.getX() + offsetX;
                 double y = location.getY() + offsetY;
                 double z = location.getZ() + offsetZ;
-                String level = location.getLevel().getName();
-                long idEntity = (2000 + LuckyCrates.offsetIdEntity++);
+                Level level = location.getLevel();
+                String idEntity = UUID.randomUUID().toString();
 
 
-                LuckyCrates.pos.set("crates." + crateName + ".id", idEntity);
-                LuckyCrates.pos.set("crates." + crateName + ".crate", crateName);
+                LuckyCrates.pos.set("crates." + idEntity + ".id", idEntity);
+                LuckyCrates.pos.set("crates." + idEntity + ".crate", crateName);
 
-                LuckyCrates.pos.set("crates." + crateName + ".pos.x", x);
-                LuckyCrates.pos.set("crates." + crateName + ".pos.y", y);
-                LuckyCrates.pos.set("crates." + crateName + ".pos.z", z);
-                LuckyCrates.pos.set("crates." + crateName + ".pos.level", level);
+                LuckyCrates.pos.set("crates." + idEntity + ".pos.x", x);
+                LuckyCrates.pos.set("crates." + idEntity + ".pos.y", y);
+                LuckyCrates.pos.set("crates." + idEntity + ".pos.z", z);
+                LuckyCrates.pos.set("crates." + idEntity + ".pos.level", level.getName());
 
                 LuckyCrates.pos.save();
-                LuckyCrates.pos.reload();
 
-                String floating = LuckyCrates.crates.getString(crateName + ".floating-text");
-                FloatingUtils.createEntity(floating, idEntity, (float) x, (float) y, (float) z, level);
+                String displayName = LuckyCrates.crates.getString(crateName + ".floating-text");
+                FloatingUtils.createEntity(displayName, idEntity, new Position(x, y, z, level));
                 return true;
             }
         }
