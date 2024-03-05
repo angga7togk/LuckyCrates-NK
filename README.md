@@ -6,7 +6,7 @@ This plugin is inspired by [PiggyCrates](https://github.com/DaPigGuy/PiggyCrates
 This plugin is for Nukkit.
 
 ## Preview
-<img src='https://github.com/angga7togk/LuckyCrates-NK/blob/2cdbc2c2030429f84a859b75069ef15f40ecd5fa/Crates.jpg' width='250'> <img src='https://github.com/angga7togk/LuckyCrates-NK/blob/2cdbc2c2030429f84a859b75069ef15f40ecd5fa/PreviewCrate.jpg' width='150'> <img src='https://github.com/angga7togk/LuckyCrates-NK/blob/2cdbc2c2030429f84a859b75069ef15f40ecd5fa/OpenCrate.jpg' width='150'>
+<img src='https://github.com/angga7togk/LuckyCrates-NK/blob/Crates.jpg' width='250'> <img src='https://github.com/angga7togk/LuckyCrates-NK/blob/2cdbc2c2030429f84a859b75069ef15f40ecd5fa/PreviewCrate.jpg' width='150'> <img src='https://github.com/angga7togk/LuckyCrates-NK/blob/2cdbc2c2030429f84a859b75069ef15f40ecd5fa/OpenCrate.jpg' width='150'>
 
 ## Features
 
