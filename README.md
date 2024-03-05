@@ -80,7 +80,7 @@ Common:
   commands: 
     - "say {player} has opened an Common Crate"
   # floating text, which will appear on crates / blocks that have been made into crates in the world
-  floating-text: "Common Crate"
+  floating-text: "§f§lCommon §eGacha Crates\n§bClick Here"
 ```
 ### Commands and Permissions
 
