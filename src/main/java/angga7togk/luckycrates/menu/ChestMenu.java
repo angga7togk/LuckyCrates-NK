@@ -115,11 +115,17 @@ public class ChestMenu {
     public int getKeysCount(Player player, String crateName) {
         Keys keys = new Keys();
         int count = 0;
-        if (player.getInventory() != null) {
-            for (Item invItem : player.getInventory().getContents().values()) {
-                if (keys.isKeys(invItem)) {
-                    if (keys.getCrateName(invItem).equalsIgnoreCase(crateName)) {
-                        count += invItem.getCount();
+
+        boolean isVirtual = LuckyCrates.getInstance().getConfig().getString("type-key", "item").equalsIgnoreCase("virtual");
+        if (isVirtual) {
+            count = LuckyCrates.keys.getInt(player.getName().toLowerCase() + "." + crateName, 0);
+        } else {
+            if (player.getInventory() != null) {
+                for (Item invItem : player.getInventory().getContents().values()) {
+                    if (keys.isKeys(invItem)) {
+                        if (keys.getCrateName(invItem).equalsIgnoreCase(crateName)) {
+                            count += invItem.getCount();
+                        }
                     }
                 }
             }
@@ -128,23 +134,32 @@ public class ChestMenu {
     }
 
     public void reduceKey(Player player, String crateName, int amount) {
-        Inventory inv = player.getInventory();
-        Keys keys = new Keys();
-        for (int slot : inv.getContents().keySet()) {
-            Item invItem = inv.getItem(slot);
-            if (keys.isKeys(invItem)) {
-                if (keys.getCrateName(invItem).equalsIgnoreCase(crateName)) {
-                    int itemCount = invItem.getCount();
-                    if (itemCount <= amount) {
-                        inv.clear(slot);
-                        amount -= itemCount;
-                    } else {
-                        invItem.setCount(itemCount - amount);
-                        inv.setItem(slot, invItem);
-                        break;
+        boolean isVirtual = LuckyCrates.getInstance().getConfig().getString("type-key", "item").equalsIgnoreCase("virtual");
+
+        if (isVirtual) {
+            int myKeys = LuckyCrates.keys.getInt(player.getName().toLowerCase() + "." + crateName, 0);
+            LuckyCrates.keys.set(player.getName().toLowerCase() + "." + crateName , myKeys - amount);
+            LuckyCrates.keys.save();
+        } else {
+            Inventory inv = player.getInventory();
+            Keys keys = new Keys();
+            for (int slot : inv.getContents().keySet()) {
+                Item invItem = inv.getItem(slot);
+                if (keys.isKeys(invItem)) {
+                    if (keys.getCrateName(invItem).equalsIgnoreCase(crateName)) {
+                        int itemCount = invItem.getCount();
+                        if (itemCount <= amount) {
+                            inv.clear(slot);
+                            amount -= itemCount;
+                        } else {
+                            invItem.setCount(itemCount - amount);
+                            inv.setItem(slot, invItem);
+                            break;
+                        }
                     }
                 }
             }
         }
+
     }
 }

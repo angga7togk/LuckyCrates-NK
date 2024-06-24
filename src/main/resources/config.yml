@@ -6,6 +6,9 @@ language: en
 #Prefix Message
 prefix: "§l§a[§r§eLuckyCrates§l§a] §r"
 
+# type key 'item' or 'virtual'
+type-key: item
+
 crates:
   # Options : roulette, instant
   type: roulette

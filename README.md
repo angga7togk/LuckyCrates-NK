@@ -11,7 +11,7 @@ This plugin is for Nukkit.
 ## Features
 
 - **Easy Configuration:** Set up your crates effortlessly using the `crates.yml` file.
-- **Item Drops:** Define a variety of drops, including normal items, custom items, enchanted items, and commands.
+  - **Item Drops:** Define a variety of drops, including normal items, custom items, enchanted items, and commands.
 - **Multilingual Support:** Seamless support for both English and Indonesian (Bahasa Indonesia) languages.
 - **Crate Types:** Choose between instant rewards and roulette-style crates for diverse player experiences.
 

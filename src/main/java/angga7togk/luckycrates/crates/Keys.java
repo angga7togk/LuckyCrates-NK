@@ -41,17 +41,26 @@ public class Keys{
     }
 
     public boolean giveKey(Player player, String crateName, int amount){
+        boolean isVirtual = LuckyCrates.getInstance().getConfig().getString("type-key", "item").equalsIgnoreCase("virtual");
         if (crateExists(crateName)){
-            String customName = this.name.replace("{crate}", crateName);
-            String lore = this.lore.replace("{crate}", crateName);
-            Item item = new Item(this.id, this.meta, amount)
-                    .setNamedTag(new CompoundTag()
-                        .putBoolean("isKeys", true)
-                        .putString("crateName", crateName));
-            item.addEnchantment(Enchantment.getEnchantment(Enchantment.ID_BINDING_CURSE));
-            if(isKeys(item)){
-                player.getInventory().addItem(item.setCustomName(customName).setLore(lore));
+            if (isVirtual){
+                int myKeys = LuckyCrates.keys.getInt(player.getName().toLowerCase() + "." + crateName, 0);
+                LuckyCrates.keys.set(player.getName().toLowerCase() + "." + crateName , myKeys + amount);
+                LuckyCrates.keys.save();
                 return true;
+            }else{
+                String customName = this.name.replace("{crate}", crateName);
+                String lore = this.lore.replace("{crate}", crateName);
+                Item item = new Item(this.id, this.meta, amount)
+                        .setNamedTag(new CompoundTag()
+                                .putBoolean("isKeys", true)
+                                .putString("crateName", crateName));
+                item.addEnchantment(Enchantment.getEnchantment(Enchantment.ID_BINDING_CURSE));
+                if (isKeys(item)) {
+                    player.getInventory().addItem(item.setCustomName(customName).setLore(lore));
+                    return true;
+                }
+
             }
         }
         return false;

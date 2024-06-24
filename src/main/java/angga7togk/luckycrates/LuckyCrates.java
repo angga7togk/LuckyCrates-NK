@@ -26,7 +26,7 @@ public class LuckyCrates extends PluginBase {
 
     @Getter
     private static LuckyCrates instance;
-    public static Config crates, pos;
+    public static Config crates, pos, keys;
     public static Map<Player, String> setMode = new HashMap<>();
     public static String prefix;
     public static final Map<String, Entity> particles = new HashMap<>();
@@ -38,12 +38,13 @@ public class LuckyCrates extends PluginBase {
 
     @Override
     public void onEnable() {
-        for (String filename : Arrays.asList("crates.yml", "position.yml")) {
+        for (String filename : Arrays.asList("crates.yml", "position.yml", "keys.yml")) {
             saveResource(filename);
         }
         saveDefaultConfig();
         crates = new Config(this.getDataFolder() + "/crates.yml", Config.YAML);
         pos = new Config(this.getDataFolder() + "/position.yml", Config.YAML);
+        keys = new Config(this.getDataFolder() + "/keys.yml", Config.YAML);
 
         if (!pos.exists("crates", true)){
             pos.set("crates", new HashMap<>());
